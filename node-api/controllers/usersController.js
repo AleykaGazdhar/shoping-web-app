@@ -5,8 +5,9 @@ const { ConnectionStates } = require("mongoose");
 
 require("dotenv").config();
 
-exports.saveUserInfo = async (req, res) => {
+exports.doSignUp = async (req, res) => {
   const postData = req.body;
+  console.log("postData:", postData)
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
@@ -52,6 +53,7 @@ exports.saveUserInfo = async (req, res) => {
     });
     try {
       var userResp = await addUser.save();
+      console.log("error========", userResp);
       if (userResp) {
         return res.json({
           message: "User Account Created Successfuly.",
@@ -66,6 +68,7 @@ exports.saveUserInfo = async (req, res) => {
         });
       }
     } catch (error) {
+      console.log("error========", error);
       return res.json({
         message: "Failed to create an user account.",
         status: 500,
@@ -77,6 +80,7 @@ exports.saveUserInfo = async (req, res) => {
 
 exports.doSignIn = async (req, res) => {
   const postData = req.body;
+ /**  console.log('postData :', postData)*/
   postData.email = postData.email.toLowerCase();
   process.env.HOST_NAME = "http://" + req.headers.host + "/";
   process.env.WEBSITE_URL = "http://" + req.headers.host + "/#/";

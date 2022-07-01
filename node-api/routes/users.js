@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Users = require("../controllers/usersController");
-router.post("/saveUserInfo", Users.saveUserInfo);
+router.post("/doSignUp", Users.doSignUp);
 router.post("/emailAlreadyExists", Users.emailAlreadyExists);
 router.post("/doSignIn", Users.doSignIn);
 router.get("/getUsersList", Users.getUsersList);

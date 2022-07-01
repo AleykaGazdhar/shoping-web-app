@@ -10,13 +10,13 @@ const routes: Routes = [
   loadChildren: ()=> import('./views/login/login.module').then( (mod)=> mod.LoginModule)
  },
   {path: 'products',
-loadChildren: ()=> import('./products/products.module').then( (mod)=> mod.ProductsModule)
+loadChildren: ()=> import('./views/products/products.module').then( (mod)=> mod.ProductsModule)
 },
   {path: 'home',
- loadChildren: ()=> import('./home/home.module').then( (mod)=> mod.HomeModule)
+ loadChildren: ()=> import('./views/home/home.module').then( (mod)=> mod.HomeModule)
 },
   {path: 'user-profile',
- loadChildren: ()=> import('./user-profile/user-profile.module').then( (mod)=> mod.UserProfileModule)
+ loadChildren: ()=> import('./views/user-profile/user-profile.module').then( (mod)=> mod.UserProfileModule)
 
   }
 

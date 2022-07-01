@@ -110,6 +110,21 @@ export class SignupComponent implements OnInit {
   }
   doSignUp() {
     console.log(this.signupForm.value);
+    this.usersService.doSignUp(this.signupForm.value).subscribe(
+      (data: any) => {
+        this.spinner.show();
+        if (data.status == 200) {
+          this.toastr.info(data.message, 'Success!');
+          this.router.navigate(['/login']);
+        }
+      },
+      (error: any) => {
+        this.spinner.hide();
+        this.toastr.error(error.message, 'Error!');
+      }
+    );
+    return;
+
   }
 
 }
