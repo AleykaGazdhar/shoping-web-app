@@ -1,6 +1,7 @@
 const User = require("../models/usersModel.js");
 const globalService = require("../core/globalService");
 var jwt = require('jsonwebtoken');
+const { ConnectionStates } = require("mongoose");
 
 require("dotenv").config();
 
@@ -121,6 +122,8 @@ exports.doSignIn = async (req, res) => {
     });
   }
 };
+
+
 
 exports.getUsersList = async (req, res) => {
   try {

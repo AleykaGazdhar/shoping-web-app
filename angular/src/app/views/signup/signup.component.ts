@@ -108,24 +108,8 @@ export class SignupComponent implements OnInit {
   get formError() {
     return this.signupForm.controls;
   }
-  onsubmit() {
+  doSignUp() {
     console.log(this.signupForm.value);
   }
-  /* resetForm() {
-    this.userFormValidation();
-    setTimeout(() => {
-      this.signupForm.valu = this.signupForm.reset({
-        firstname: 'Aleyka',
-        lastname: 'gazdhar',
-        eamil: 'abc@gmail.com',
-        password: 'Abc@123',
-        confirmpassword: 'Abc@123',
-        gender: '',
-      });
-    }, 5000);
-  } */
 
-  doSignUp() {
-
-  }
 }

@@ -53,7 +53,7 @@ app.use(
   })
 );
 // HERE WE ARE DOING AUTHORIZATION WITH API/UI WITHOUT UI WE CAN'T ACCESS OUR API. IT WILL BE CHANGE AFTER LOGIN ENV.authorization
-app.use(async (req, res) => {
+/* app.use(async (req, res) => {
   const authorization = req.headers.authorization
   if (authorization) {
     const authorization = req.headers.authorization.split(" ")[1]
@@ -81,7 +81,7 @@ app.use(async (req, res) => {
       });
     }
   }
-})
+}) */
 
 app.use(express.urlencoded({
   extended: true
