@@ -4,11 +4,11 @@ var Any = mongoose.Schema.Types.Mixed;
 // Define collection and schema for Items
 
 var Users = new Schema({
-  firstName: {
+  firstname: {
     type: String,
     trim: true
   },
-  lastName: {
+  lastname: {
     type: String,
     trim: true
   },
@@ -17,7 +17,7 @@ var Users = new Schema({
     trim: true,
     unique: true
   },
-  phoneNumber: {
+  phonenumber: {
     type: String
   },
   password: {
@@ -26,19 +26,7 @@ var Users = new Schema({
   gender: {
     type: String
   },
-  dob: {
-    type: String
-  },
-  role: {
-    type: String
-  },
-  status: {
-    type: Number
-  },
-  profileImage: Any,
-  forgotLink: String,
-  forgotStatus: Any,
-}, {
+  }, {
   timestamps: true,
   collection: 'users'
 });

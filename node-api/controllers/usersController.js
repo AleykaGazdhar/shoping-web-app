@@ -53,7 +53,7 @@ exports.doSignUp = async (req, res) => {
     });
     try {
       var userResp = await addUser.save();
-      console.log("error========", userResp);
+      console.log("userResp========", userResp);
       if (userResp) {
         return res.json({
           message: "User Account Created Successfuly.",
