@@ -1,6 +1,6 @@
 <!--Navabr-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary ">
-  <i class="fa fa-shopping-bag ml-5" aria-hidden="true"></i><a class="navbar-brand ml-1" href="/home">&nbsp;Shopping Mart</a>
+  <i class="fa fa-shopping-bag ml-5" aria-hidden="true"></i><a class="navbar-brand ml-1" [routerLink]="['/home']">&nbsp;Shopping Mart</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,16 +8,16 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/user-profile">User Profile</a>
+        <a class="nav-link" [routerLink]="['/user-profile']">User Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/products">Products</a>
+        <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/product-list">Products List</a>
+      <li *ngIf="currentUser?._id" class="nav-item">
+        <a class="nav-link" [routerLink]="['/product-list']">Products List</a>
       </li>
     </ul>
     <form class="d-flex p-2">
@@ -30,21 +30,21 @@
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
        <li class="nav-item">
          <div class="p-1 mr-4">
-            <button class="nav-item btn btn-light" [routerLink]="['/login']" (click)="logout()" type="submit">logout</button>
+            <button class="nav-item btn btn-light" [routerLink]="['/login']" (click)="logout()" type="button">logout</button>
          </div>
        </li>
     </ul>
   </span>
-  <a *ngIf="!currentUser?._id" href="#" [routerLink]="['/login']" class="navbar-text">
+  <a *ngIf="!currentUser?._id"  class="navbar-text">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <div class="p-1">
-            <button class="nav-item btn btn-light" [routerLink]="['/signup']"> Sign Up</button>
+            <button class="nav-item btn btn-light" [routerLink]="['/signup']" type="button"> Sign Up</button>
           </div>
         </li>
         <li class="nav-item">
           <div class="p-1 mr-5">
-            <button class="nav-item btn btn-light" [routerLink]="['/login']">Login</button>
+            <button class="nav-item btn btn-light" [routerLink]="['/login']" type="button">Login</button>
           </div>
         </li>
        </ul>

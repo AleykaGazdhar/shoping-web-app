@@ -48,8 +48,7 @@ ngOnInit(): void {
   logout() {
     this.jwtService.destroyToken();
     this.globalService.logOut();
-    this.router.navigate(['/login']);
-    this.toastr.success('You have logged out successfully.', 'Success');
-
+    // this.router.navigate(['/login']);
+    this.toastr.info('You have logged out successfully.', 'Success');
   }
 }
