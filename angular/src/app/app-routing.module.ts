@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared-ui/guard/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -20,6 +21,7 @@ loadChildren: ()=> import('./views/products/products.module').then( (mod)=> mod.
 
   },
   {path: 'product-list',
+  canActivate: [AuthGuard],
   loadChildren: ()=> import('./views/product-list/product-list.module').then( (mod)=> mod.ProductListModule)
 }
 

@@ -68,5 +68,26 @@ export class GlobalService {
     }
   }
 
+  authentication() {
+    const userInfo = this.jwtService.loggedUserInfo;
+    if (userInfo && userInfo.email) {
+      const loginInfo = {
+        email: userInfo.email,
+      };
+      this.usersService.authentication(loginInfo).subscribe(
+        (data) => {
+          if (!data.currentUser) {
+            this.spinner.hide();
+            this.jwtService.destroyToken();
+            this.sendActionChildToParent('Logout');
+            this.router.navigate(['/login']);
+          }
+        },
+        (error) => {}
+      );
+    }
+  }
+
+
 
 }

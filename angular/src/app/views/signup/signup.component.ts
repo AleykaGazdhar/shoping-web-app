@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { signupUser } from './modules/signup.model';
+import { environment } from 'src/environments/environment';
 import {
   FormGroup,
   FormBuilder,
@@ -83,6 +84,9 @@ export class SignupComponent implements OnInit {
         ],
         confirmpassword: ['', [Validators.required]],
         gender: 'male',
+        status: 1,
+        role : environment.role.userRole,
+
       },
       {
         validator: this.passwordConfirming,
