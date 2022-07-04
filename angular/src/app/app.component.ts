@@ -44,4 +44,12 @@ ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
     console.log("this.currentUser======", this.currentUser);
   }
+
+  logout() {
+    this.jwtService.destroyToken();
+    this.globalService.logOut();
+    this.router.navigate(['/login']);
+    this.toastr.success('You have logged out successfully.', 'Success');
+
+  }
 }

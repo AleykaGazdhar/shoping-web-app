@@ -54,5 +54,19 @@ export class GlobalService {
     return this.subject.asObservable();
   }
 
+  logOut() {
+    this.sendActionChildToParent('loggedOut');
+    const userInfo = this.jwtService.loggedUserInfo;
+    if (userInfo && userInfo.email) {
+      const loginInfo = {
+        email: userInfo.email,
+      };
+      this.usersService.logout().subscribe(
+        (data) => {},
+        (error) => {}
+      );
+    }
+  }
+
 
 }
