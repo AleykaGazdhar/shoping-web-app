@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:3000/',
   // baseUrl: '/',
-  cookieToken: 'ang1qazNodexsw2tra',
+  cookieToken: 'Shp1qazNodexsw2Mrt',
   cookieExpirationTime: 10,
   uploadsFolder: {
     profile: 'profile',
   },
-  jwtTokenKey: 'angNodeTraining_JwtTken',
-  currentUserKey: 'angNodeTraining_currentUser',
+  jwtTokenKey: 'shopingMart_JwtTken',
+  currentUserKey: 'shopingMart_currentUser',
   role: {
     userRole: 'user',
     adminRole: 'admin',

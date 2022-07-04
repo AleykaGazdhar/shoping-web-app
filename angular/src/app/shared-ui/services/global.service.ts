@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from "rxjs";
+import { Router } from '@angular/router';
+import { JwtService, UsersService } from '..';
+import { environment } from '../../../environments/environment';
+import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
   private subject = new Subject<any>();
+  users = 'users';
 
-  constructor() { }
+  constructor(
+    private jwtService: JwtService,
+    private usersService: UsersService,
+    private router: Router,
+    private apiService: ApiService,
+    private httpClient: HttpClient,
+    private spinner: NgxSpinnerService
+  ) { }
 
   patternMatchRegex(inputVal: any, InputType: string) {
     let RegEx: any = '';
@@ -31,5 +45,14 @@ export class GlobalService {
   setLoadingLabel(action: string) {
     this.subject.next({ text: action });
   }
+
+  sendActionChildToParent(action: string) {
+    this.subject.next({ text: action });
+  }
+
+  getActionChildToParent(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
 
 }

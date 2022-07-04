@@ -78,7 +78,7 @@ exports.doSignUp = async (req, res) => {
   }
 };
 
-exports.doSignIn = async (req, res) => {
+exports.doLogin = async (req, res) => {
   const postData = req.body;
  /**  console.log('postData :', postData)*/
   postData.email = postData.email.toLowerCase();

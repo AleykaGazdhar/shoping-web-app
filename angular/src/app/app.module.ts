@@ -10,9 +10,13 @@ import { SharedUiModule } from './shared-ui';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
+
   ],
   imports: [
     BrowserModule,

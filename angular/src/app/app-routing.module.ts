@@ -18,7 +18,10 @@ loadChildren: ()=> import('./views/products/products.module').then( (mod)=> mod.
   {path: 'user-profile',
  loadChildren: ()=> import('./views/user-profile/user-profile.module').then( (mod)=> mod.UserProfileModule)
 
-  }
+  },
+  {path: 'product-list',
+  loadChildren: ()=> import('./views/product-list/product-list.module').then( (mod)=> mod.ProductListModule)
+}
 
 ];
 

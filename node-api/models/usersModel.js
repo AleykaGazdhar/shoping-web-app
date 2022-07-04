@@ -26,6 +26,12 @@ var Users = new Schema({
   gender: {
     type: String
   },
+  role: {
+    type: String
+  },
+  status: {
+    type: Number
+  },
   }, {
   timestamps: true,
   collection: 'users'

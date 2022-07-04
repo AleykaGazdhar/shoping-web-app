@@ -42,16 +42,37 @@ export class LoginComponent implements OnInit {
   doLogin() {
     let loginPostData = this.login;
     this.spinner.show();
-    this.toastr.info('error msg', 'testing msg')
     if(loginPostData.remember) {
       this.jwtService.setCookie(environment.cookieToken,loginPostData);
     } else {
       this.jwtService.deleteCookie(environment.cookieToken);
     }
-    this.usersService.doSignUp(loginPostData).subscribe(
+    this.usersService.doLogin(loginPostData).subscribe(
       (data: any) => {
+        console.log("data============", data);
         this.spinner.hide();
+         if(data.status == 200) {
+         let userDetails = data.data;
+         this.toastr.info(data.message, 'Success');
+         this.jwtService.saveToken(userDetails.authorization);
+         this.jwtService.saveCurrentUser(JSON.stringify(userDetails));
+         this.jwtService.getCurrentUser();
+         this.globalService.sendActionChildToParent('Loggin');
+         if(userDetails && userDetails.role == environment.role.adminRole) {
+          this.router.navigate(['/dashboard']);
+         } else {
+          this.router.navigate(['/products']);
+         }
+         }
+         else {
+          this.toastr.error(data.message, 'Error');
+         }
+      },
+      (error: any) => {
+        this.spinner.hide();
+        this.toastr.error(error.message, 'Error');
       }
-    )
-   }
+    );
+  }
 }
+

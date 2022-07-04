@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/products">Products</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/product-list">Products List</a>
+      </li>
     </ul>
     <form class="d-flex p-2">
       <div class="input-group">
@@ -23,20 +26,20 @@
           <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
       </div>
   </form>
-    <span class="navbar-text">
+  <a *ngIf="!currentUser?._id" href="#" [routerLink]="['/login']" class="navbar-text">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <div class="p-1">
-            <button class="nav-item btn btn-light" [routerLink]="'/signup'"> Sign Up</button>
+            <button class="nav-item btn btn-light" [routerLink]="['/signup']"> Sign Up</button>
           </div>
         </li>
         <li class="nav-item">
           <div class="p-1 mr-5">
-            <button class="nav-item btn btn-light" [routerLink]="'/login'">Login</button>
+            <button class="nav-item btn btn-light" [routerLink]="['/login']">Login</button>
           </div>
         </li>
        </ul>
-    </span>
+  </a>
   </div>
 </nav>
 <ngx-spinner bdColor="rgba(51,51,51,0.8)"
