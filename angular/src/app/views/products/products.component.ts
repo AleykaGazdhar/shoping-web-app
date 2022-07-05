@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalService, AlertService, UsersService } from '../../shared-ui';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { ProductService } from "../products/product.service"
 declare var $: any;
 
 @Component({
@@ -29,7 +30,8 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService,
     private spinner: NgxSpinnerService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private productService: ProductService,
     ) { }
 
   ngOnInit(): void {
@@ -84,7 +86,7 @@ export class ProductsComponent implements OnInit {
 
   addProduct() {
     console.log(this.productForm.value);
-    this.usersService.addProduct(this.productForm.value).subscribe(
+    this.productService.addProduct(this.productForm.value).subscribe(
       (data: any) => {
         this.spinner.show();
         if(data.status == 200) {
