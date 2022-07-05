@@ -10,9 +10,9 @@
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" *ngIf="currentUser?._id">
+<!--   <li class="nav-item" *ngIf="currentUser?._id">
         <a class="nav-link" [routerLink]="['/user-profile']">User Profile</a>
-      </li>
+      </li> -->
       <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class= "nav-item">
         <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
@@ -26,7 +26,25 @@
           <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
       </div>
   </form>
-  <span *ngIf="currentUser?._id" class="navbar-text">
+  <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown>
+    <span class="text-capitalize align-middle">Welcome {{currentUser.firstname}}</span>
+    <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;" dropdownToggle> </i>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li class="nav-item">
+        <a class="dropdown-item p-2 pl-3" [routerLink]="['/user-profile']"><i class="fa fa-user p-1"></i>
+          Profile Setting</a>
+        <hr class="m-0">
+      </li>
+      <li class="nav-item">
+        <a class="dropdown-item p-2 pl-3" [routerLink]="['/login']" (click)="logout()" type="submit">
+          <i class="fa fa-lock p-1"></i>
+           logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!--<span *ngIf="currentUser?._id" class="navbar-text">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
        <li class="nav-item">
          <div class="p-1 mr-4">
@@ -34,7 +52,8 @@
          </div>
        </li>
     </ul>
-  </span>
+  </span>-->
+
   <a *ngIf="!currentUser?._id"  class="navbar-text">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -62,7 +81,7 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
 <!--footer-->
 <footer class="text-center text-lg-start bg-primary text-muted fixed-bottom">
   <div class="text-center p-4" style="color: white;">
-    © 2021 Copyright:
+    ©Copyright 2022:
     <a class="text-reset fw-bold" href="#">ShoppingMart.com</a>
   </div>
 </footer>
