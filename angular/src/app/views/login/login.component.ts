@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
     }
     this.usersService.doLogin(loginPostData).subscribe(
       (data: any) => {
-        console.log("data============", data);
         this.spinner.hide();
          if(data.status == 200) {
          let userDetails = data.data;
@@ -59,9 +58,9 @@ export class LoginComponent implements OnInit {
          this.jwtService.getCurrentUser();
          this.globalService.sendActionChildToParent('Loggin');
          if(userDetails && userDetails.role == environment.role.adminRole) {
-          this.router.navigate(['/dashboard']);
-         } else {
           this.router.navigate(['/products']);
+         } else {
+          this.router.navigate(['/product-list']);
          }
          }
          else {

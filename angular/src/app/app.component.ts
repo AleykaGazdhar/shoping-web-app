@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent  {
   subscription: Subscription  = new Subscription();
   currentUser: currentUser = new currentUser();
   addClassActiveUser: boolean = false;
+  uRoles: any = environment.role;
 constructor(
   private jwtService: JwtService,
     private router: Router,
@@ -42,7 +44,6 @@ constructor(
 }
 ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
-    console.log("this.currentUser======", this.currentUser);
   }
 
   logout() {

@@ -9,33 +9,28 @@ import { Router } from '@angular/router';
 import { JwtService } from '..';
 import { environment } from '../../../environments/environment';
 import { GlobalService } from '../services/global.service';
+import { currentUser } from '../models/current-user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  constructor(
-    private jwtService: JwtService,
-    private router: Router,
-    private globalService: GlobalService
-  ) { }
-
+export class isFalseAuthGuard implements CanActivate {
+  currentUser: currentUser = new currentUser();
+  constructor(private jwtService: JwtService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.jwtService.getToken()) {
-      const user = this.jwtService.loggedUserInfo;
-      console.log('user', user);
-      if (user && user.role) {
+    this.currentUser = this.jwtService.getCurrentUser();
+    if (this.currentUser && this.currentUser.role) {
+      if (this.currentUser.role === environment.role.adminRole) {
+        this.router.navigate(['/products']);
         return true;
       } else {
-        this.router.navigate(['/login']);
-        return false;
+        this.router.navigate(['/product-list']);
+        return true;
       }
-    } else {
-      this.router.navigate(['/login']);
-      return false;
     }
+    return true;
   }
 }

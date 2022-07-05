@@ -10,14 +10,14 @@
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser?._id">
         <a class="nav-link" [routerLink]="['/user-profile']">User Profile</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class= "nav-item">
         <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
-      <li *ngIf="currentUser?._id" class="nav-item">
-        <a class="nav-link" [routerLink]="['/product-list']">Products List</a>
+      <li *ngIf="currentUser?._id && currentUser.role === uRoles.userRole" class="nav-item">
+        <a class="nav-link" [routerLink]="['/product-list']">Order List</a>
       </li>
     </ul>
     <form class="d-flex p-2">
