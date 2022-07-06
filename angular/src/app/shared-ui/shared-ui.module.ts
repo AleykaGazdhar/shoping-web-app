@@ -17,6 +17,7 @@ import {} from './loading/loading.component';
 import { GrdFilterPipe } from './filters-pipes/grd-filter.pipe';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+import { DataTablesModule } from 'angular-datatables';
 
 const SHARED_COMPONENTS: any = [
   NumberOnlyDirective,
@@ -30,6 +31,8 @@ const SHARED_MODULES: any = [
   CommonModule,
   FormsModule,
   RouterModule,
+  DataTablesModule,
+  NgxSpinnerModule,
   BsDropdownModule.forRoot(),
   ModalModule,
   BsDropdownModule.forRoot(),

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { ApiService } from "../../shared-ui/services/api.service";
 import { map } from "rxjs/operators";
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,15 @@ export class ProductService {
       })
     );
   }
+
+  public getProductsList(): Observable<any> {
+    return this.apiService.get(`${this.products}/getProductsList`).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
+
 
 
 }

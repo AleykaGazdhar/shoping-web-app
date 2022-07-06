@@ -4,3 +4,37 @@
   background-color: lightblue;
 }
 
+.table-bordered,
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #e1e6f1 !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  float: right;
+  text-align: right;
+  padding-bottom: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+}
+
+.table {
+  width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_scroll {
+  margin-bottom: 16px;
+}
+
+
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border: none !important;
+}
+
+.table.dataTable {
+  border-collapse: separate !important;
+}

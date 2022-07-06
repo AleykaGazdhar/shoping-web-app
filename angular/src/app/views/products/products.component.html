@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="wrapper">
+<!--<div class="wrapper">
   <div class="container">
     <div class="row g-1">
       <div class="col-md-3">
@@ -84,16 +84,64 @@
     </div>
   </div>
 </div>
-
-
+-->
+<div class="container-fluid app-user bg-white p-5">
+  <div class="table-responsive-lg">
+    <!-- list -->
+    <table [dtOptions]="dtOptions" datatable [dtTrigger]="dtTrigger"
+      class="table table-bordered table-hover table-striped" style="width: 100%">
+      <thead>
+        <tr class="text-nowrap text-primary">
+          <th>S.n.</th>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Product Margin</th>
+          <th>Product Discription</th>
+          <!-- <th>Role</th> -->
+          <th>Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-wrap">
+        <tr class=" border" *ngFor="let product of productsList; let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{product?.productname}}</td>
+          <td>{{product?.productprice}}</td>
+          <td>{{product?.productmargin}}</td>
+          <td>{{product?.Productdescription}}</td>
+          <!-- <td>{{product.role == 'admin' ? 'Admin' : 'User'}}</td> -->
+          <td>
+            <ui-switch (change)="changeUserStatus(product)" [(ngModel)]="product.status" color="#4285F4"
+              defaultBgColor="#d9d9d9" labelOn="Active" labelOff="Inactive">
+            </ui-switch>
+          </td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center">
+               <button type="button" class="btn btn-sm btn-primary edit me-1" (click)="showeModel(product)"><i
+                    class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-sm btn-danger delete" (click)="showUserDeleteModal(product)"><i
+                  class="fa fa-remove"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <!-- Modal -->
 <div bsModal #ProductModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true" [config]="{backdrop: 'static', keyboard: false, animated: true}">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-pencil"></i> Add Products</h4>
+      <div class="modal-header" *ngIf="productForm?._id">
+        <h4 class="modal-title"><i class="fa fa-pencil"></i>Edit Products</h4>
+        <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header" *ngIf="!productForm?._id">
+        <h4 class="modal-title"><i class="fa fa-pencil"></i> Products</h4>
         <button type="button" class="close" (click)="closeModel()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

@@ -47,3 +47,21 @@ exports.addProduct = async (req,res) => {
     
   }
 }
+
+exports.getProductsList = async(req,res) => {
+  console.log('test============')
+  try {
+    const data = await Products.find();
+    return res.json({
+      status: 200,
+      message: "Get the Product successfully.",
+      data: data,
+    });
+  } catch(error) {
+    return res.json({
+      status: 500,
+      message: "Some Error occured.",
+      data: error,
+    });
+  }
+};

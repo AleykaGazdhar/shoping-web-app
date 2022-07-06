@@ -5,6 +5,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { SharedUiModule } from 'src/app/shared-ui';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ProductsRoutingModule,
     SharedUiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class ProductsModule { }
