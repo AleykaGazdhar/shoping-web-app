@@ -27,6 +27,7 @@ DBConnection.then(
 
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/users");
+var productRouter = require("./routes/products");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -93,6 +94,7 @@ app.use(bodyParser.urlencoded({
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
+app.use("/products", productRouter);
 app.use('/uploadImage', require('./controllers/localFileUpload'));
 
 

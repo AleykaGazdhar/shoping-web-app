@@ -8,15 +8,11 @@ require("dotenv").config();
 exports.doSignUp = async (req, res) => {
   const postData = req.body;
   console.log("postData:", postData)
-  if (postData.password) {
-    postData.password = globalService.encryptString(postData.password);
-  }
+ 
 
   if (postData._id) {
     postData.updatedAt = new Date();
-    if (postData.profileOldImage) {
-      globalService.removeFile(postData.profileOldImage, () => {});
-    }
+   
     User.updateOne({
         _id: postData._id,
       },
@@ -46,7 +42,6 @@ exports.doSignUp = async (req, res) => {
       }
     );
   } else {
-    postData.email = postData.email.toLowerCase();
     const addUser = new User();
     Object.keys(postData).forEach((key) => {
       addUser[key] = postData[key];

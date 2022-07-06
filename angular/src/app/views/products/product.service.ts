@@ -12,7 +12,7 @@ export class ProductService {
     private apiService: ApiService
   ) { }
   public addProduct(param: object): any {
-    return this.apiService.post(`${this.products}/products`, param).pipe(
+    return this.apiService.post(`${this.products}/addProduct`, param).pipe(
       map((data) => {
         return data;
       })
