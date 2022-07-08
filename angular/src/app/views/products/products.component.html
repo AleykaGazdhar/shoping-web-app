@@ -122,8 +122,7 @@
             <div class="d-flex justify-content-center">
                <button type="button" class="btn btn-sm btn-primary edit me-1" (click)="showeModel(product)"><i
                     class="fa fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-danger delete" (click)="showUserDeleteModal(product)"><i
-                  class="fa fa-remove"></i></button>
+              <button type="button" class="btn btn-sm btn-danger delete" (click)="showUserDeleteModal(product)"><i class='fa fa-trash' style='font-size:24px;color: white'></i></button>
             </div>
           </td>
         </tr>
@@ -131,7 +130,7 @@
     </table>
   </div>
 </div>
-
+<br><br>
 <!--<pre [innerHtml]="productsList | json"> </pre>-->
 
 <!-- Modal -->
@@ -140,7 +139,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-pencil"></i>{{ productForm.value._id ? 'Edit' : 'Add'}}  Products</h4>
+        <h4 class="modal-title"><i class="fa fa-pencil"></i>&nbsp;{{ productForm.value._id ? 'Edit' : 'Add'}} Products</h4>
         <button type="button" class="close" (click)="closeModel()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -201,10 +200,43 @@
           </div>
         </form>
         <div class="modal-footer border-top-0 d-flex  justify-content-start">
-          <button type="button" class="btn btn-primary me-1" type="submit" [disabled]="!productForm.valid"(click)="addProduct()">Add Product</button>
-          <button type="button" class="btn btn-danger" (click)="closeModel()">Delete</button>
+          <button type="button" class="btn btn-primary me-1" type="submit" [disabled]="!productForm.valid"(click)="addProduct()">{{ productForm.value._id ? 'Edit' : 'Add'}} Product</button>
+          <button type="button" class="btn btn-danger" (click)="closeModel()">Close</button>
         </div>
         <pre [innerHtml]="this.productForm.value | json"></pre><br><br>
       </div>
     </div>
   </div>
+</div>
+<!--Delete table column-->
+
+
+
+
+<div bsModal #deleteProductrModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: 'static', keyboard: false, animated: true}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-trash"></i> Delete Product</h4>
+        <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Are you sure want to delete this Product?</h4>
+        <p><br>
+           <b><u>Product Details :</u></b><br>
+           Product Name- {{productnfo.productname}}  <br>
+           Product Price- {{productnfo.productprice}} <br>
+           Product Margin- {{productnfo.productmargin}} <br>
+           Product Discription- {{productnfo.Productdescription}}
+        </p>
+      </div>
+      <div class="modal-footer border-top-0 d-flex  justify-content-start">
+         <button type="button" class="btn btn-primary" (click)="closeModel()">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

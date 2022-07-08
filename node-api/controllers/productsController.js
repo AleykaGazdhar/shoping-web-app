@@ -28,7 +28,7 @@ exports.addProduct = async (req,res) => {
     });
   } else {
     Products.create(productData, (productError, productRes)=>{
-      console
+      
       if (productError) {
         return res.json({
           status: 500, 
@@ -46,10 +46,9 @@ exports.addProduct = async (req,res) => {
     }) 
     
   }
-}
+};
 
 exports.getProductsList = async(req,res) => {
-  console.log('test============')
   try {
     const data = await Products.find();
     return res.json({
@@ -64,4 +63,24 @@ exports.getProductsList = async(req,res) => {
       data: error,
     });
   }
+};
+
+exports.deleteProduct = async(req,res) => {
+  const deletedata = req.body;
+  Products.deleteOne({_id : deletedata._id},  (Deleteerr, deleteResp)=> {
+    if (Deleteerr) {
+      return res.json({
+        status: 500, 
+        message: "There are some errror while deleting product.",
+        data: Deleteerr,
+      });
+    } else {
+      return res.json({
+        status: 200,
+        message: "Your Product has been deleted Successfully.",
+        data: deleteResp,
+      });
+    }
+
+  })
 };

@@ -39,8 +39,8 @@ export class ProductsComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  @ViewChild('deleteUserModal', { static: false })
-  public deleteUserModal: any = ModalDirective;
+  @ViewChild('deleteProductrModal', { static: false })
+  public deleteProductrModal: any = ModalDirective;
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -76,6 +76,42 @@ export class ProductsComponent implements OnInit {
     this.productFormValidation();
     this.getProductsList();
   }
+  productFormValidation () {
+    this.productForm = this.fb.group({
+      _id: '',
+      status: 1,
+      productname: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(20),
+        ],
+      ],
+      productprice: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(5),
+          Validators.minLength(1),
+        ],
+      ],
+      productmargin: [
+        '',
+      [
+        Validators.required,
+        Validators.maxLength(5),
+      ],
+      ],
+      Productdescription: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(300),
+        ],
+      ],
+    });
+  }
+
 
   ngAfterViewInit(): void {
     this.dtTrigger.next('');
@@ -135,54 +171,17 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  showUserDeleteModal(product: any) {
-    this.productnfo = product;
-    this.deleteUserModal.show();
-  }
-
-
-  productFormValidation () {
-    this.productForm = this.fb.group({
-      _id: '',
-      status: 1,
-      productname: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(20),
-        ],
-      ],
-      productprice: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(5),
-          Validators.minLength(1),
-        ],
-      ],
-      productmargin: [
-        '',
-      [
-        Validators.required,
-        Validators.maxLength(5),
-      ],
-      ],
-      Productdescription: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(300),
-        ],
-      ],
-    });
-  }
-
 
   closeModel() {
     this.ProductModal.hide();
+    this.deleteProductrModal.hide();
   }
+
   showeModel(product?:any) {
-    this.productForm.reset(product)
+    this.productFormValidation();
+    if(product) {
+      this.productForm.reset(product)
+    }
     this.ProductModal.show();
   }
 
@@ -208,4 +207,31 @@ export class ProductsComponent implements OnInit {
       }
     );
   }
+
+  showUserDeleteModal(product: any) {
+    this.productnfo = Object.assign({}, product);
+    this.deleteProductrModal.show();
+  }
+  deleteProduct() {
+    this.spinner.show();
+    this.productService.deleteProduct(this.productnfo).subscribe(
+      (dataRes: any) => {
+        if (dataRes.status === 200) {
+          this.closeModel();
+          this.spinner.hide();
+          this.getProductsList();
+          this.toastr.success('Product deleted successfully.', 'Success');
+        }
+      },
+      (error: any) => {
+        this.closeModel();
+        this.spinner.hide();
+        this.toastr.error(
+          'There are some server error. Please check connection.',
+          'Error'
+        );
+      }
+    );
+  }
+
 }

@@ -28,6 +28,13 @@ export class ProductService {
     );
   }
 
+  public deleteProduct(param: object): Observable<any> {
+    return this.apiService.post(`${this.products}/deleteProduct`, param).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
 
 
 }
