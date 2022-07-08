@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 
 
+
 @NgModule({
   declarations: [
     ProductsComponent
@@ -16,7 +17,7 @@ import { DataTablesModule } from 'angular-datatables';
     CommonModule,
     ProductsRoutingModule,
     SharedUiModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }

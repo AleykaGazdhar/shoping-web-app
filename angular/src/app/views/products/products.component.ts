@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
   productnfo: currentProduct = new currentProduct();
   userRoles: any = environment.role;
 
+
   @ViewChild('ProductModal', { static: false })
   public ProductModal: any = ModalDirective;
   productsList: any[] = [];
@@ -109,7 +110,7 @@ export class ProductsComponent implements OnInit {
   changeUserStatus(user: any) {
     let postData = {
       _id: user._id,
-      status: user.status ? 0 : 1,
+      status: user.status ? 1: 0,
     };
     // HERE WE CAN CALL API FOR SAVING DATA
     this.productService.addProduct(postData).subscribe(
@@ -143,6 +144,7 @@ export class ProductsComponent implements OnInit {
   productFormValidation () {
     this.productForm = this.fb.group({
       _id: '',
+      status: 1,
       productname: [
         '',
         [
@@ -195,9 +197,9 @@ export class ProductsComponent implements OnInit {
         this.spinner.show();
         if(data.status == 200) {
           this.toastr.info(data.message, 'Success! Product is added.');
-          this.router.navigate(['/products']);
           this.ProductModal.hide();
           this.spinner.hide();
+          this.getProductsList();
         }
       },
       (error: any) => {

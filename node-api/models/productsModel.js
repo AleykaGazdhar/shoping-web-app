@@ -20,6 +20,9 @@ var Products = new mongoose.Schema({
     type: String,
     trim: true
   },
+  status: {
+    type: Number
+  },
 }, {
   timestamps: true,
   collection: 'products'
