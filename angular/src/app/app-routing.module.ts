@@ -45,6 +45,14 @@ const routes: Routes = [
         (mod) => mod.ProductListModule
       ),
   },
+  {
+    path: 'product-details/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./views/product-details/product-details.module').then(
+        (mod) => mod.ProductDetailsModule
+      ),
+  },
 ];
 
 @NgModule({
