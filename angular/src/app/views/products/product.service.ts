@@ -20,8 +20,8 @@ export class ProductService {
     );
   }
 
-  public getProductsList(): Observable<any> {
-    return this.apiService.get(`${this.products}/getProductsList`).pipe(
+  public getProductsList(param?: object): Observable<any> {
+    return this.apiService.post(`${this.products}/getProductsList`, param).pipe(
       map((data) => {
         return data;
       })

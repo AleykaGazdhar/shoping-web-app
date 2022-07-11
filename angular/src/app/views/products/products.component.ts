@@ -99,7 +99,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsList() {
-    this.productService.getProductsList().subscribe({
+    this.productService.getProductsList({}).subscribe({
       next: (dataRes: any) => {
         this.spinner.show();
         if (dataRes.status == 200) {

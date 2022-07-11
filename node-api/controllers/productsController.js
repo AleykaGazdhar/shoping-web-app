@@ -50,8 +50,10 @@ exports.addProduct = async (req,res) => {
 };
 
 exports.getProductsList = async(req,res) => {
+  console.log(req.body)
+  let whereObj = req.body
   try {
-    const data = await Products.find();
+    const data = await Products.find(whereObj);
     return res.json({
       status: 200,
       message: "Get the Product successfully.",
