@@ -120,3 +120,45 @@ body {
   z-index: 2;
   overflow: hidden;
 }
+
+.remove-file-icon {
+    position: absolute;
+    right: 13px;
+    z-index: 999;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    /* opacity: 0.3; */
+    background: white;
+    border: 5px solid red;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.choose-file {
+  padding: 5px 10px;
+  background: #688c08;
+  border: 1px solid #688c08;
+  position: relative;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer
+}
+
+.hide_file {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  font-size: 24px;
+  cursor: pointer;
+  bottom: 0;
+  left: 0;
+}

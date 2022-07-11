@@ -27,7 +27,9 @@ exports.addProduct = async (req,res) => {
       }
     });
   } else {
+    delete productData._id;
     Products.create(productData, (productError, productRes)=>{
+      console.log("productError========", productError);
       
       if (productError) {
         return res.json({
@@ -42,9 +44,8 @@ exports.addProduct = async (req,res) => {
           data: productRes,
         });
       }
-
     }) 
-    
+  
   }
 };
 

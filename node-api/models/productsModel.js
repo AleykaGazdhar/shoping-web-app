@@ -23,6 +23,7 @@ var Products = new mongoose.Schema({
   status: {
     type: Number
   },
+  productImg: Any
 }, {
   timestamps: true,
   collection: 'products'
