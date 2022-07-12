@@ -25,6 +25,7 @@ export class AppComponent  {
   subscription: Subscription  = new Subscription();
   currentUser: currentUser = new currentUser();
   addClassActiveUser: boolean = false;
+  showNav: boolean = false;
   uRoles: any = environment.role;
 constructor(
   private jwtService: JwtService,
@@ -51,5 +52,9 @@ ngOnInit(): void {
     this.globalService.logOut();
     // this.router.navigate(['/login']);
     this.toastr.info('You have logged out successfully.', 'Success');
+  }
+
+  toggleNavbar() {
+    this.showNav = !this.showNav;
   }
 }

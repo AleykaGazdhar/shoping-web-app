@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
   calculateMargin() {
     if (Number(this.productData.productmargin)) {
       let perceVal = this.productData.productprice * (this.productData.productmargin/100)
-      return (this.productData.productprice-perceVal).toFixed(2);;
+      return (this.productData.productprice-perceVal).toFixed(2);
     } else {
       return this.productData.productprice;
     }
