@@ -113,10 +113,11 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
   doSignUp() {
+    this.spinner.show();
     console.log(this.signupForm.value);
     this.usersService.doSignUp(this.signupForm.value).subscribe(
       (data: any) => {
-        this.spinner.show();
+        this.spinner.hide();
         if (data.status == 200) {
           this.toastr.info(data.message, 'Success!');
           this.router.navigate(['/login']);

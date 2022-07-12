@@ -99,11 +99,10 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsList() {
+    this.spinner.show();
     this.productService.getProductsList({}).subscribe({
       next: (dataRes: any) => {
-        this.spinner.show();
         if (dataRes.status == 200) {
-          this.spinner.hide();
           this.datatableElement.dtInstance.then(
             (dtInstance: DataTables.Api) => {
               dtInstance.destroy();
