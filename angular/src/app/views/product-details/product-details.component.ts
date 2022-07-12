@@ -52,4 +52,7 @@ export class ProductDetailsComponent implements OnInit {
       return this.productData.productprice;
     }
   }
+  commingSoon() {
+    this.toastr.error('This feature is Comming Soon');
+  };
 }
