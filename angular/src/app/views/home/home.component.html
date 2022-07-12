@@ -2,16 +2,19 @@
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  row-cols-lg-4 g-4">
     <div class="col pb-3" *ngFor="let product of productsList; let i=index">
       <div class="card h-100 m-auto" >
-        <img [src]="product?.productImg" class="card-img-top product-img p-3" height="200px">
+        <img [src]="product?.productImg" class="card-img-top product-img p-3" height="200px" [routerLink]="['/product-details', product._id ]">
         <div class="card-body">
           <h5 class="card-title">{{product?.productname}}</h5>
         </div>
         <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>₹ {{product?.productprice}}</b></li>
-        <li class="list-group-item" [title]="product?.Productdescription">{{product?.Productdescription.substring(0,100)}}</li>
+        <li class="list-group-item">
+          <b class="pull-left">₹ {{product?.productprice}}</b>
+          <b class="pull-right badge bg-danger ms-2">{{product?.productmargin}}% off</b>
+        </li>
+        <li class="list-group-item" [title]="product?.Productdescription">{{product?.Productdescription.substring(0,50)}}</li>
         </ul>
         <div class="card-footer">
-          <a href="#" class="card-link">Add to Cart</a>
+          <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">Add to cart</button>
           <button type="button" class="btn btn-primary float-right" [routerLink]="['/product-details', product._id ]" data-bs-toggle="button" autocomplete="off" >Buy Product</button>
         </div>
       </div>

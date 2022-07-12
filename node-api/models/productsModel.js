@@ -13,7 +13,7 @@ var Products = new mongoose.Schema({
     trim: true
   },
   productmargin: {
-    type: String,
+    type: Number,
     trim: true
   },
   Productdescription: {
