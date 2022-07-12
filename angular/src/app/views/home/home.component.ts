@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../shared-ui/services/api.service';
 import { ProductService } from '../products/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private productService: ProductService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -35,4 +37,7 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+  commingSoon() {
+    this.toastr.info('This feature is Comming Soon');
+  };
 }

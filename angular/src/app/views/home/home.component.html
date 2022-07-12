@@ -14,11 +14,12 @@
         <li class="list-group-item" [title]="product?.Productdescription">{{product?.Productdescription.substring(0,50)}}</li>
         </ul>
         <div class="card-footer">
-          <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">Add to cart</button>
+          <button type="button" class="btn btn-secondary" (click)="commingSoon()">Add to cart</button>
           <button type="button" class="btn btn-primary float-right" [routerLink]="['/product-details', product._id ]" data-bs-toggle="button" autocomplete="off" >Buy Product</button>
         </div>
       </div>
     </div>
 </div>
 <br>
+
 
