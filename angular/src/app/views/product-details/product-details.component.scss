@@ -9,7 +9,7 @@ body {
 }
 
 .main-section {
-  position: absolute;
+  position: relative;
   left: 50%;
   right: 50%;
   transform: translate(-50%, 5%);
@@ -25,13 +25,15 @@ body {
   height: 100px;
 }
 
-.right-side-pro-detail span {
-  font-size: 15px;
+
+
+.right-side-pro-detail h5 {
+  font-size: 25px;
 }
 
-.right-side-pro-detail p {
-  font-size: 25px;
-  color: #a1a1a1;
+.right-side-pro-detail h4 {
+  font-size: 19px;
+  color: #717171;
 }
 
 .right-side-pro-detail .price-pro {
@@ -41,6 +43,11 @@ body {
 .right-side-pro-detail .tag-section {
   font-size: 18px;
   color: #5D4C46;
+}
+
+.right-side-pro-detail .name {
+  color: #000000;
+  font-size: 25px;
 }
 
 .pro-box-section .pro-box img {
@@ -56,5 +63,38 @@ body {
   .pro-box-section .pro-box img {
       height: auto;
   }
+}
+
+
+.product-price{
+  margin: 0.5rem 0;
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+.product-price span{
+  font-weight: 500;
+}
+.last-price span{
+  color: #f64749;
+  text-decoration: line-through;
+}
+.new-price span{
+  color: #256eff;
+}
+
+.color {
+  margin-bottom:10px
+}
+label.radio {
+  cursor: pointer
+}
+label.radio input {
+  position: absolute;top: 0;left: 0;visibility: hidden;pointer-events: none
+}
+label.radio span {
+  padding: 2px 9px;border: 2px solid #ff0000;display: inline-block;color: #ff0000;border-radius: 3px;text-transform: uppercase
+}
+label.radio input:checked+span {
+  border-color: #ff0000;background-color: #ff0000;color: #fff
 }
 
