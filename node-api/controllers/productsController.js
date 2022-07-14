@@ -87,3 +87,50 @@ exports.deleteProduct = async(req,res) => {
 
   })
 };
+
+exports.searchProductData = (req, res) => {
+  var postProductData = req.body;
+  Products.find({
+      $or: [{
+        productname: {
+            $regex: new RegExp(
+              ".*" + postProductData.productSearch.toLowerCase() + ".*",
+              "i"
+            ),
+          },
+        },
+        {
+          Productdescription: {
+            $regex: new RegExp(
+              ".*" + postProductData.productSearch.toLowerCase() + ".*",
+              "i"
+            ),
+          },
+        },
+      ],
+    },
+    (err, data) => {
+      if (data === null) {
+        return res.json({
+          status: 500,
+          message: "There are some error while getting Product Information.",
+          data: err,
+        });
+      } else {
+        if (data.length) {
+          return res.json({
+            status: 200,
+            message: "Getting Product data successfully.",
+            data: data,
+          });
+        } else {
+          return res.json({
+            status: 500,
+            message: "No Product Data Found.",
+            data: data,
+          });
+        }
+      }
+    }
+  );
+};

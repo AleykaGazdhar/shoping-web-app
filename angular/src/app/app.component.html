@@ -1,5 +1,5 @@
 <!--Navabr-->
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
   <i class="fa fa-shopping-bag ml-5" aria-hidden="true"></i><a class="navbar-brand ml-1" [routerLink]="['/home']">&nbsp;Shopping Mart</a>
   <button aria-controls="main-nav" (click)="toggleNavbar()" class="navbar-toggler collapsed" type="button"
       aria-label="Toggle navigation">
@@ -26,8 +26,7 @@
     </ul>
     <form class="d-flex p-2">
       <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search">
-          <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+          <button type="button" class="search-btn btn btn-secondary" (click)="showModel()" id="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
   </form>
   <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown>
@@ -90,4 +89,56 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
   </div>
 </footer>
 <!-- Footer ends-->
+
+<!--search-->
+<div id="quickSerachWrap" bsModal #quickSerachWrap="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class ="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="quickSearchOverlayFormWrap">
+          <div class="quickSearchFormWrap">
+            <a (click)="closeModel()" class="quickSearchOverlayCloseBtn">
+                <i class="fa fa-times"></i>
+            </a>
+            <form role="form">
+              <div class ="form-group">
+                <input id="quickSearchText" type="text" name="products" class="form-control ng-valid ng-dirty"
+                aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-00E-5349"
+                placeholder="Please Enter product Name" [(ngModel)]="productSearch.productSearchText"
+                (ngModelChange)="getProductSearchdata(productSearch.productSearchText)">
+                <ul role="listbox" aria-hidden="false" active="activeIdx" position="position" class="dropdown-menu" style="display: block; left: 0px;">
+                  <li class="active pt-3 ng-star-inserted" *ngFor="let productItem of quickSearchProductList; let i=index" (click)="closeModel()">
+                      <a class ="ng-star-inserted p-3" style="text-decoration: none;">
+                        <div class ="row search-results-item list-view" *ngIf="!productItem.error" [routerLink]="['/product-details', productItem._id ]">
+                          <div class="col-sm-2 hidden-xs">
+                            <div class="media-list-image-wrap propertyList-slide-wrap" style="overflow: hidden;">
+                              <div class="ng-star-inserted">
+                                <img width="100" height="50" class="lazyOwl img-fluid"
+                                [src]="productItem?.productImg" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-8 col-sm-6" style="white-space: normal;">
+                            <h4 class="mb-10 text-capitalize" ><strong>
+                              {{productItem.productname}}<br></strong></h4>
+                              <span>{{productItem.Productdescription}}</span>
+                          </div>
+                        </div>
+                        <div class="row search-results-item list-view m-0" *ngIf="productItem.error">
+                          <div class="col-xs-12 col-sm-12" style="white-space: normal;">
+                            <h4 class="mb-10 text-capitalize text-center"><strong>{{productItem.error}}</strong></h4>
+                          </div>
+                        </div>
+                      </a>
+                  </li>
+                </ul>
+                <span class="aroLoader form-control-feedback" *ngIf="loadingListings"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

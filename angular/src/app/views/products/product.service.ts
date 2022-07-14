@@ -36,5 +36,13 @@ export class ProductService {
     );
   }
 
+  public searchProductData(param: object): Observable<any> {
+    return this.apiService.post(`${this.products}/searchProductData`, param).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
+
 
 }

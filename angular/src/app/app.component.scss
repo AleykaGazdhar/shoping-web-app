@@ -18,3 +18,352 @@
     font-weight: 600;
   }
 }
+
+.img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.search-btn {
+  background-color: grey;
+  color: white;
+  border: none;
+  font-size: 18px;
+}
+
+.form-group {
+  padding-top: 7px;
+  margin-bottom: 7px;
+
+  .search-bar {
+    color: white;
+    margin-bottom: 0;
+    font-size: 10px;
+    padding-right: 8px;
+
+    @media screen and (max-width: 479px) {
+      display: none;
+    }
+  }
+
+  .form-control {
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+.open-search {
+  display: block !important;
+  position: absolute;
+  width: 280px;
+  transform: translateX(-91%);
+  background: #000;
+  padding: 5px 10px;
+  z-index: 9;
+  top: 38px;
+  border-radius: 5px;
+}
+
+#quickSerachWrap {
+  background-color: rgb(29 96 121 / 98%);
+  color: rgb(22, 21, 21);
+
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1060;
+
+  .quickSearchOverlayFormWrap {
+    padding: 30% 0;
+
+    .quickSearchFormWrap {
+      position: relative;
+      font-style: normal;
+      margin-bottom: 0;
+
+      .quickSearchOverlayCloseBtn {
+        color: #fff;
+        cursor: pointer;
+        font-size: 20px;
+        position: absolute;
+        right: -5px;
+        top: -40px;
+
+        i {
+          padding: 10px
+        }
+      }
+
+      form {
+        @media (max-width:768px) {
+          width: 100%
+        }
+
+        .form-group {
+          &:before {
+            content: "\f002";
+            font-family: "FontAwesome";
+            left: 10px;
+            top: 50%;
+            position: absolute;
+            color: #fff;
+            -webkit-transform: translatey(-50%);
+            -moz-transform: translatey(-50%);
+            -ms-transform: translatey(-50%);
+            -o-transform: translatey(-50%);
+            transform: translatey(-50%);
+
+          }
+
+          .form-control {
+            padding: 0 0 0 30px;
+            height: 50px;
+            font-size: 18px;
+            border: 0;
+            border-radius: 0;
+            border-bottom: 2px solid #fff;
+            background-color: transparent;
+            color: #fff;
+
+            @media (max-width:768px) {
+              display: block;
+              width: 100%;
+              -webkit-appearance: none;
+              font-size: 16px
+            }
+
+            &:focus {
+              border-color: grey;
+              box-shadow: none;
+              outline: 0 none
+            }
+          }
+        }
+
+
+        .dropdown-menu {
+          border: 0;
+          border-top: none;
+          border-radius: 0;
+          box-shadow: none;
+          margin-top: 0;
+          max-height: 300px;
+          width: 100%;
+          overflow-x: hidden;
+          overflow-y: visible;
+          padding: 0;
+          background: 0 0;
+
+          &>li {
+            color: #fff;
+
+            @media (max-width:768px) {
+              &:nth-child(even) {
+                background-color: rgba(0, 0, 0, .85);
+                position: absolute;
+                padding: 0;
+                position: relative
+              }
+            }
+
+            .row {
+              margin-left: -13px;
+              margin-right: -5px;
+
+              &>[class^=col-] {
+                padding-left: 5px;
+                padding-right: 5px;
+              }
+            }
+
+            &>a {
+              cursor: pointer;
+              padding: 5px;
+              color: #fff;
+              display: inline-block;
+              width: 100%;
+
+              @media (max-width:768px) {
+                white-space: normal;
+                font-size: 90%
+              }
+
+              &:hover {
+                background-color: grey;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.quickSearchFormWrap form .form-control {
+  font-size: inherit
+}
+
+.quickSearchFormWrap form .aroLoader {
+  top: 10px;
+  height: 32px;
+  width: 28px;
+  position: absolute;
+  right: 0;
+}
+
+.quickSearchFormWrap .no-results {
+  padding: 13px 20px 0 32px
+}
+
+.aroLoader {
+  display: block;
+  width: 16px;
+  height: 16px;
+  -webkit-animation: aroLoader .8s steps(1, start) infinite;
+  -o-animation: aroLoader .8s steps(1, start) infinite;
+  animation: aroLoader .8s steps(1, start) infinite;
+  background: linear-gradient(0deg, #686a6d 1px, transparent 0, transparent 8px, grey 8px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px), linear-gradient(0deg, grey 1px, transparent 0, transparent 8px, grey 8px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px), linear-gradient(0deg, grey 1px, transparent 0, transparent 8px, grey 8px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px), linear-gradient(0deg, grey 1px, transparent 0, transparent 10px, grey 10px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px), linear-gradient(0deg, grey 1px, transparent 0, transparent 15px, grey 15px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px), linear-gradient(0deg, grey 1px, transparent 0, transparent 15px, grey 15px), linear-gradient(90deg, grey 1px, grey 0, grey 3px, grey 3px);
+  background-repeat: no-repeat;
+  background-size: 4px 9px, 4px 9px, 4px 9px, 4px 9px, 4px 9px, 4px 9px, 4px 11px, 4px 11px, 4px 16px, 4px 16px, 4px 16px, 4px 16px;
+  background-position: -4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 2px, -4px 2px, -4px 0, -4px 0, -4px 0, -4px 0
+}
+
+@keyframes aroLoader {
+  12.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0
+  }
+
+  25% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px
+  }
+
+  37.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px
+  }
+
+  50% {
+    background-position: -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px
+  }
+
+  62.5% {
+    background-position: -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px
+  }
+
+  75% {
+    background-position: 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  87.5% {
+    background-position: 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  100% {
+    background-position: 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+}
+
+@-webkit-keyframes aroLoader {
+  12.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0
+  }
+
+  25% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px
+  }
+
+  37.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px
+  }
+
+  50% {
+    background-position: -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px
+  }
+
+  62.5% {
+    background-position: -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px
+  }
+
+  75% {
+    background-position: 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  87.5% {
+    background-position: 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  100% {
+    background-position: 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+}
+
+@-moz-keyframes aroLoader {
+  12.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0
+  }
+
+  25% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px
+  }
+
+  37.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px
+  }
+
+  50% {
+    background-position: -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px
+  }
+
+  62.5% {
+    background-position: -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px
+  }
+
+  75% {
+    background-position: 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  87.5% {
+    background-position: 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  100% {
+    background-position: 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+}
+
+@-o-keyframes aroLoader {
+  12.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0
+  }
+
+  25% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px
+  }
+
+  37.5% {
+    background-position: -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px
+  }
+
+  50% {
+    background-position: -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px
+  }
+
+  62.5% {
+    background-position: -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px
+  }
+
+  75% {
+    background-position: 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  87.5% {
+    background-position: 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+
+  100% {
+    background-position: 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px
+  }
+}
+

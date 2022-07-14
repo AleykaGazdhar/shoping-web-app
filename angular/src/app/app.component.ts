@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import{
   currentUser,
@@ -13,6 +14,9 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ProductService } from '../app//views/products/product.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -27,13 +31,23 @@ export class AppComponent  {
   addClassActiveUser: boolean = false;
   showNav: boolean = false;
   uRoles: any = environment.role;
+  @ViewChild('quickSerachWrap', { static: false})
+  public quickSerachWrap: any = ModalDirective;
+  productSearch: any = {
+    productSearchText: '',
+  };
+  quickSearchProductList: any[] = [];
+  loadingListings: boolean = false;
+  productItem: any;
+
 constructor(
   private jwtService: JwtService,
     private router: Router,
     private globalService: GlobalService,
     private toastr: ToastrService,
     private usersService: UsersService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private productService: ProductService
 ) {
   this.subscription = this.globalService
       .getActionChildToParent()
@@ -56,5 +70,42 @@ ngOnInit(): void {
 
   toggleNavbar() {
     this.showNav = !this.showNav;
+  }
+
+  getProductSearchdata(searchProductData: String) {
+    this.spinner.show();
+    let validString = searchProductData.replace(/\s/g, ''); //remove space from serached data
+    if(validString) {
+      this.productService.searchProductData({ productSearch: searchProductData }).subscribe(
+        (data) => {
+          if (data.status == 200) {
+            this.spinner.hide();
+            this.quickSearchProductList = data.data;
+          } else {
+            this.spinner.hide();
+            this.quickSearchProductList = [{error: 'No Data Found'}];
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+        }
+      );
+    } else {
+      this.quickSearchProductList = [];
+      this.toastr.warning('Please Enter Product Name.', 'warning');
+      this.spinner.hide();
+    }
+  }
+
+ // to blank the field everytime we open the seach bar!!
+  closeModel() {
+   this.quickSerachWrap.hide();
+   this.quickSearchProductList = [];
+   this.productSearch.productSearchText = ''
+
+  }
+
+  showModel( ) {
+    this.quickSerachWrap.show();
   }
 }
