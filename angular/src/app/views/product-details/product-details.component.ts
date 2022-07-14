@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductDetailsComponent implements OnInit {
   productID: any;
   productData: any = {};
+  quantity: any= 1;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -47,12 +48,14 @@ export class ProductDetailsComponent implements OnInit {
   calculateMargin() {
     if (Number(this.productData.productmargin)) {
       let perceVal = this.productData.productprice * (this.productData.productmargin/100)
-      return (this.productData.productprice-perceVal).toFixed(2);
+      return (this.productData.productprice-perceVal*this.quantity).toFixed(2);
     } else {
-      return this.productData.productprice;
+      return this.productData.productprice * this.quantity;
     }
   }
   commingSoon() {
     this.toastr.error('This feature is Comming Soon');
   };
+
+
 }

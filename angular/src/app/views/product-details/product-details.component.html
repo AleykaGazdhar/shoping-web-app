@@ -46,7 +46,7 @@
               <div class="col">
                 <div class="col-lg-12  mt-3">
                   <h6>QUANTITY :</h6>
-                  <input type="number" class="form-control text-center w-100" value="1">
+                  <input type="number" class="form-control text-center w-100" [(ngModel)]="quantity" value="1" min="1">
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@
                   <a class="btn btn-danger w-100" (click)="commingSoon()">Add To Cart</a>
                 </div>
                 <div class="col-lg-6">
-                  <a href="#" class="btn btn-success w-100">Buy Now</a>
+                  <button href="#" class="btn btn-success w-100" [disabled]="!quantity">Buy Now</button>
                 </div>
               </div>
             </div>
@@ -68,4 +68,3 @@
 </div>
 
 
-<!--<pre [innerHtml]="this.productData | json"></pre>-->
