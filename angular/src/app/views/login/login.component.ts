@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
          if(userDetails && userDetails.role == environment.role.adminRole) {
           this.router.navigate(['/products']);
          } else {
-          this.router.navigate(['/product-list']);
+          this.router.navigate(['/home']);
          }
          }
          else {
