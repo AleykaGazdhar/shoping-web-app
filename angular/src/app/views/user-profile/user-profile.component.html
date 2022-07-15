@@ -1,167 +1,138 @@
-<section>
-  <div class="container p-5 mt-5 mb-5">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="../../assets/images/User-Profile-PNG.png" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">{{currentUser.firstname}} {{currentUser.lastname}}</h5>
-            <p class="text-muted mb-1">{{currentUser.role}}</p>
-            <p class="text-muted mb-4">Indore, Madhya Pradesh, IN</p>
-            <!-- <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-            </div> -->
+<div class="container profile-setting mb-5 mt-3 p-5">
+  <div class="row">
+    <h3>Profile Setting</h3>
+    <hr class="hrLine m-0">
+  </div>
+  <div class="row my-4">
+    <div class="col-md-4">
+      <div class="card h-40 mt-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-center align-items-start mt-4">
+            <label for="fileToUpload" class="rounded-circle">
+              <div class="profile-pic">
+                <img id="ImgPreview" src="../../../assets/images/userProfile.png" height="150px" width="150px" class="rounded-circle mr-3" />
+              </div>
+              <!-- <input type="File" name="fileToUpload" id="fileToUpload" class="form-control" accept="image/*"
+                > -->
+                <!-- <button class="rmv"><i
+                  class="fa fa-times"></i>
+                </button> -->
+              </label>
+              </div>
+          <div class="mt-5 text-center">
+            <h4 class="text-capitalize">{{userStaticDetail.firstname}} {{userStaticDetail.lastname}}</h4>
+            <p class="text-secondary mb-1">{{userStaticDetail.firstname}}</p>
+            <p class="text-muted font-size-sm text-capitalize">Bcc House, First Floor, 8/5/5 Manorama Ganj, INDORE</p>
+            <div>
+            </div>
           </div>
-        </div>
 
-        <!-- <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
+          <div>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-phone me-2"></i> <a>+91{{userStaticDetail.phonenumber}} </a> </li>
+              <li><i class="fa fa-envelope me-2"></i> <a>{{userStaticDetail.email}}</a> </li>
             </ul>
           </div>
-        </div> -->
-      </div>
-
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{currentUser.firstname}} {{currentUser.lastname}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{currentUser.email}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{currentUser.phonenumber}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Gender</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{currentUser.gender}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Indore, Madhya Pradesh, IN</p>
-              </div>
-            </div>
-          </div>
         </div>
-        <!-- <div class="row">
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-              </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              First Name
+              <sup [ngClass]="checkvalidation('firstname')"><i class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="First name" name="firstname" id="firstname" [(ngModel)]="currentUser.firstname">
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-              </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Last Name <sup [ngClass]="checkvalidation('lastname')"><i class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="Last name" name="lastname" [(ngModel)]="currentUser.lastname">
             </div>
           </div>
-        </div> -->
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Email <sup [ngClass]="checkvalidation('email')"><i class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="col-sm-8">
+              <input type="text"  class="form-control" placeholder="Email"
+                name="email" [(ngModel)]="currentUser.email" disabled >
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Phone Number <sup [ngClass]="checkvalidation('phonenumber')"><i class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" numbersOnly class="form-control" maxlength="10" placeholder="Phone number"
+                name="phonenumber" [(ngModel)]="currentUser.phonenumber" (ngModelChange)="patternMatchCheck(currentUser.phonenumber, 'phoneNumber')">
+              <p class="alert fade show mt-1 mb-0" role="alert"
+                >
+                Phone number should be 10 digits.
+              </p>
+            </div>
+
+          </div>
+          <hr class="hrLine">
+        </div>
+        <div class="card-body">
+          <p class="fw-bold text-decoration-underline fst-italic fs-6">Change Password (Optional)</p>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Password<sup *ngIf="currentUser.password" [ngClass]="checkvalidation('password')"><i
+                class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="input-group col-sm-8">
+              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10" placeholder="Password" name="password" [(ngModel)]="currentUser.password" (ngModelChange)="patternMatchCheck(currentUser.password, 'strongPasswordCheck')">
+              <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fa" [ngClass]= "{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()"> </i>
+                  </span>
+              </div>
+              <p class="alert fade alert-danger show mt-1" role="alert" *ngIf="currentUser.password && !inValidateCheck.strongPasswordCheck">
+                Use Strong Password min 8 characters,1 lowercase letter,1 uppercase letter,1 number ,1 special
+                character.</p>
+            </div>
+
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Confirm Password <sup *ngIf="currentUser.password" [ngClass]="checkvalidation('confirmpassword')"><i
+                class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="input-group col-sm-8">
+              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10" placeholder="Confirm Password"
+                name="confirmPassword" [(ngModel)]="currentUser.confirm_password">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fa" [ngClass]= "{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()"> </i>
+                  </span>
+              </div>
+              <p class="alert alert-danger show mt-1" role="alert"
+                *ngIf="currentUser.password && currentUser.confirm_password && currentUser.password !== currentUser.confirm_password">
+                Confirm Password must match with password.
+              </p>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-sm-12 text-secondary">
+              <button type="button" [routerLink]="['/user-profile']" class="btn btn-secondary px-4 m-2">
+                Cancel
+              </button>
+              <button type="button" class="btn btn-primary px-4 m-2" (click)="uploadProfile()"><i
+                  class="fa fa-pencil fa-xs me-2"></i>Edit</button>
+            </div>
+          </div>
+          <!-- <pre [innerHtml]="currentUser | json"> </pre> -->
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>

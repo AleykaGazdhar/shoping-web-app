@@ -210,7 +210,7 @@ export class ProductsComponent implements OnInit {
       }
     );
   }
-
+//Sir given code
   onFileSelected(event?: any) {
     this.productForm.get('productImg').setValue('');
     if (event.target.files && event.target.files.length) {

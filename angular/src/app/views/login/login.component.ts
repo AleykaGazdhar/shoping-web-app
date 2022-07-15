@@ -20,6 +20,7 @@ class loginUser {
 export class LoginComponent implements OnInit {
   login: loginUser = new loginUser();
   currentUser: any;
+  fieldTextType: boolean = false;
 
   constructor(
     private router: Router,
@@ -72,6 +73,9 @@ export class LoginComponent implements OnInit {
         this.toastr.error(error.message, 'Error');
       }
     );
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }
 
