@@ -3,7 +3,6 @@ import {currentUser, GlobalService,
   JwtService,
   UsersService,} from '../../shared-ui';
   import { Router } from '@angular/router';
-  import { environment } from 'src/environments/environment';
   import { NgxSpinnerService } from 'ngx-spinner';
   import { ToastrService } from 'ngx-toastr';
 

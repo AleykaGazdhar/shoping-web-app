@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { signupUser } from './modules/signup.model';
-import { environment } from 'src/environments/environment';
 import {
   FormGroup,
   FormBuilder,
@@ -12,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalService, AlertService, UsersService } from '../../shared-ui';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 declare var $: any;
 

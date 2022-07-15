@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
+import { SharedUiModule } from '../../shared-ui';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
-import { SharedUiModule } from 'src/app/shared-ui';
 
 
 @NgModule({

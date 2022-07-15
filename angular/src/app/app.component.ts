@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { environment } from 'src/environments/environment';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ProductService } from '../app//views/products/product.service';
 import { data } from 'jquery';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
