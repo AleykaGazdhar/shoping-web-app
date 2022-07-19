@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
     this.getProductsList();
   }
   getProductsList() {
+    this.spinner.show();
     this.productService.getProductsList({ status: 1 }).subscribe({
       //only shows pbject whose status is 1
       next: (dataRes: any) => {
@@ -29,7 +30,6 @@ export class HomeComponent implements OnInit {
         if (dataRes.status == 200) {
           this.spinner.hide();
           this.productsList = dataRes.data;
-          this.spinner.hide();
         }
       },
       error: (error: any) => {
