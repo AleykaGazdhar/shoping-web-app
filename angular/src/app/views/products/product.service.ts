@@ -44,5 +44,29 @@ export class ProductService {
     );
   }
 
+  public razorPayCreateOrder(param: object): Observable<any> {
+    return this.apiService.post(`${this.products}/razorPayCreateOrder`, param).pipe(
+      map((data:any) => {
+        return data
+      })
+    )
+  }
+
+  public razorPayOrdayPayment(param: object): Observable<any> {
+    return this.apiService.post(`${this.products}/razorPayOrdayPayment`, param).pipe(
+      map((data:any) => {
+        return data;
+      })
+    )
+  }
+  public getOrderList(param: object): Observable<any> {
+    return this.apiService.post(`${this.products}/getOrderList`, param).pipe(
+      map((data:any) => {
+        return data;
+      })
+    )
+  }
+
+
 
 }

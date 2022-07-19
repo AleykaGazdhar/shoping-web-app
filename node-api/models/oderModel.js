@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var Any = mongoose.Schema.Types.Mixed;
 
-var Payment = new Schema(
+var orders = new Schema(
   {
     fullName: {
       type: String,
@@ -24,11 +24,14 @@ var Payment = new Schema(
       type: String,
       required: true,
     },
+    userId: Any,
+    productDetails: Any,
+    quantity: Any
   },
   {
     timestamps: true,
-    collection: "booking",
+    collection: "orders",
   }
 );
 
-module.exports = mongoose.model('payment', Payment);
+module.exports = mongoose.model('orders', orders);

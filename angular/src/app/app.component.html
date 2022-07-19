@@ -21,7 +21,7 @@
         <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
       <li *ngIf="currentUser?._id && currentUser.role === uRoles.userRole" class="nav-item">
-        <a class="nav-link" [routerLink]="['/product-list']">Order List</a>
+        <a class="nav-link" [routerLink]="['/order-list']">Order List</a>
       </li>
     </ul>
     <form class="d-flex p-2">

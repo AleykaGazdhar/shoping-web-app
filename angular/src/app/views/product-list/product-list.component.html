@@ -1,1 +1,45 @@
-<p>product-list works!</p>
+<!-- Button trigger modal -->
+
+<div class="row text-right p-2">
+  <div class="col-12 ">
+   Your Orders Here
+  </div>
+</div>
+
+<div class="container-fluid app-user bg-white p-5">
+  <div class="table-responsive-lg">
+    <!-- list -->
+    <table [dtOptions]="dtOptions" datatable [dtTrigger]="dtTrigger"
+      class="table table-bordered table-hover table-striped" style="width: 100%">
+      <thead>
+        <tr class="text-nowrap text-primary ">
+          <th>S.n.</th>
+          <th>Product Id</th>
+          <th>Payment Id</th>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Product Image</th>
+          <th>Product Price</th>
+          <th>Product Margin</th>
+          <th>Product Discription</th>
+          <th>order Date</th>
+        </tr>
+      </thead>
+      <tbody class="text-wrap">
+        <tr class=" border" *ngFor="let order of orderList; let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{order.razorpayOrderId}}</td>
+          <td>{{order.razorpayPaymentId}}</td>
+          <td>{{order.productDetails?.productname}}</td>
+          <td>{{order.quantity}}</td>
+          <td><img [src]="order.productDetails?.productImg" width="150px" height="100px"> </td>
+          <td>{{order.amount}}</td>
+          <td>{{order.productDetails?.productmargin}} %</td>
+          <td>{{order.productDetails?.Productdescription}}</td>
+          <td>{{order.createdAt}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<pre [innerHtml]="orderList | json"> </pre>

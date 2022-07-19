@@ -56,8 +56,9 @@
                   <a class="btn btn-danger w-100" (click)="commingSoon()">Add To Cart</a>
                 </div>
                 <div class="col-lg-6">
-                  <button href="#" class="btn btn-success w-100" [disabled]="!quantity">Buy Now</button>
+                  <button href="#" class="btn btn-success w-100" [disabled]="!quantity" (click)="razorPay()">Buy Now</button>
                 </div>
+                <pre [innerHtml]="orderDetails | json"> </pre>
               </div>
             </div>
           </div>
@@ -66,5 +67,6 @@
     </div>
   </div>
 </div>
+
 
 

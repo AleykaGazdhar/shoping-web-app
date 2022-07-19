@@ -38,7 +38,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'product-list',
+    path: 'order-list',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./views/product-list/product-list.module').then(
@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'product-details/:id',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import('./views/product-details/product-details.module').then(
         (mod) => mod.ProductDetailsModule

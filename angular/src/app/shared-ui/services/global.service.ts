@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class GlobalService {
   private subject = new Subject<any>();
   users = 'users';
+  productViewid: any = ''
 
   constructor(
     private jwtService: JwtService,
