@@ -29,9 +29,9 @@
           <button type="button" class="search-btn btn btn-secondary" (click)="showModel()" id="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
   </form>
-  <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown>
-    <span class="text-capitalize align-middle">Welcome {{currentUser.firstname}}</span>
-    <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;" dropdownToggle> </i>
+  <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown dropdownToggle>
+    <span class="text-capitalize align-middle" style="cursor: pointer;"> Welcome {{currentUser.firstname}}</span>
+    <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;"> </i>
     <ul *dropdownMenu class="dropdown-menu" role="menu">
       <li class="nav-item">
         <a class="dropdown-item p-2 pl-3" [routerLink]="['/user-profile']"><i class="fa fa-user p-1"></i>
