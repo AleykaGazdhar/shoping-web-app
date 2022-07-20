@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
   productID: any;
   productData: any = {};
   quantity: any= 1;
+  size: any;
   RAZORPAY_OPTIONS: any = {
     key: 'rzp_test_Cl5FzNaTJyToxF',
     amount: '',
@@ -114,7 +115,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   commingSoon() {
-    this.toastr.error('This feature is Comming Soon');
+    this.toastr.info('This feature is Comming Soon...');
   };
 
 
@@ -160,6 +161,7 @@ export class ProductDetailsComponent implements OnInit {
     let postData: any = postdata;
     postData.productDetails = this.productData;
     postData.quantity = this.quantity;
+    postdata.size = this.size;
     this.productService.razorPayOrdayPayment(postData).subscribe(
       (data: any) => {
         this.spinner.hide();

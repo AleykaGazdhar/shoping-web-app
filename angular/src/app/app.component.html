@@ -104,7 +104,7 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
               <div class ="form-group">
                 <input id="quickSearchText" type="text" name="products" class="form-control ng-valid ng-dirty"
                 aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-00E-5349"
-                placeholder="Please Enter product Name" [(ngModel)]="productSearch.productSearchText"
+                placeholder="Please Enter product Name.." [(ngModel)]="productSearch.productSearchText"
                 (ngModelChange)="getProductSearchdata(productSearch.productSearchText)">
                 <ul role="listbox" aria-hidden="false" active="activeIdx" position="position" class="dropdown-menu" style="display: block; left: 0px;">
                   <li class="active pt-3 ng-star-inserted" *ngFor="let productItem of quickSearchProductList; let i=index" (click)="closeModel()">
@@ -122,6 +122,10 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
                             <h4 class="mb-10 text-capitalize" ><strong>
                               {{productItem.productname}}<br></strong></h4>
                               <span>{{productItem.Productdescription}}</span>
+                          </div>
+                          <div class="col-xs-4 col-sm-2" style="white-space: normal;">
+                            <h4 class="mb-10 text-capitalize" ><strong>
+                              ₹{{productItem.productprice}} ({{productItem.productmargin}}%)<br></strong></h4>
                           </div>
                         </div>
                         <div class="row search-results-item list-view m-0" *ngIf="productItem.error">

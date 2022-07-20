@@ -26,7 +26,8 @@ var orders = new Schema(
     },
     userId: Any,
     productDetails: Any,
-    quantity: Any
+    quantity: Any,
+    size: Any
   },
   {
     timestamps: true,

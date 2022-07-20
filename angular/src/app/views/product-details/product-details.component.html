@@ -19,7 +19,7 @@
                 <p class="name">{{productData.productname}}</p>
               </div>
               <div class="col-lg-2">
-                <a href="#" class="btn btn-secondary btn-lg w-100 float-left "> <i class="fa fa-heart"></i></a>
+                <a class="btn btn-secondary btn-lg w-100 float-left" (click)="commingSoon()"> <i class="fa fa-heart"></i></a>
               </div>
             </div>
             <div class="product-price">
@@ -33,19 +33,19 @@
               <hr class="m-0 pt-2 mt-2">
             </div>
             <div class="row">
-              <div class="col">
+              <div class="col-md-9">
                 <div class="sizes mt-3">
-                  <h6 class="text-uppercase">Size</h6> <label class="radio mr-1"> <input type="radio" name="size"
+                  <h6 class="text-uppercase">Size</h6> <label class="radio mr-1"> <input type="radio" name="size" [(ngModel)]="size"
                       value="S" checked> <span>S</span> </label> <label class="radio  mr-1"> <input type="radio"
-                      name="size" value="M"> <span>M</span> </label> <label class="radio  mr-1"> <input type="radio"
-                      name="size" value="L"> <span>L</span> </label> <label class="radio  mr-1"> <input type="radio"
+                      name="size" [(ngModel)]="size" value="M"> <span>M</span> </label> <label class="radio  mr-1"> <input type="radio"
+                      name="size" [(ngModel)]="size" value="L"> <span>L</span> </label> <label class="radio  mr-1"> <input type="radio"
                         name="size" value="XL"> <span>XL</span> </label><label class="radio  mr-1">
-                    <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
+                    <input type="radio" name="size" [(ngModel)]="size" value="XXL"> <span>XXL</span> </label>
                 </div>
               </div>
               <div class="col">
                 <div class="col-lg-12  mt-3">
-                  <h6>QUANTITY :</h6>
+                  <h6> QUANTITY :</h6>
                   <input type="number" class="form-control text-center w-100" [(ngModel)]="quantity" value="1" min="1">
                 </div>
               </div>
@@ -58,7 +58,7 @@
                 <div class="col-lg-6">
                   <button href="#" class="btn btn-success w-100" [disabled]="!quantity" (click)="razorPay()">Buy Now</button>
                 </div>
-                <pre [innerHtml]="orderDetails | json"> </pre>
+                <!--<pre [innerHtml]="orderDetails | json"> </pre>-->
               </div>
             </div>
           </div>

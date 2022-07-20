@@ -38,6 +38,6 @@ export class HomeComponent implements OnInit {
     });
   }
   commingSoon() {
-    this.toastr.info('This feature is Comming Soon');
+    this.toastr.info('This feature is Comming Soon...');
   };
 }
