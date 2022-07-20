@@ -1,9 +1,12 @@
 <!-- Button trigger modal -->
 <div class="container pt-5 mb-5 card ">
   <div class="row text-left p-2">
-    <h4 class="col-12 ">
+    <h4 class="col-12" *ngIf="currentUser.role === uRoles.userRole">
      YOUR PLACED ORDER'S ARE HERE
     </h4>
+    <h4 class="col-12" *ngIf="currentUser.role === uRoles.adminRole">
+      ALL ORDERS OF CUSTOMERS
+     </h4>
     <hr>
   </div>
 
@@ -16,7 +19,7 @@
           <tr class="text-nowrap text-primary ">
             <th>S.N.</th>
             <th>PRODUCT ID</th>
-            <th>PRODUCT (S)</th>
+            <th>PRODUCT <b>(S)</b></th>
             <th>PRODUCT IMAGE</th>
             <th>PRODUCT PRICE <b>(OFF)</b></th>
             <th>QUANTITY</th>

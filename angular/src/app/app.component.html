@@ -21,7 +21,10 @@
         <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
       <li *ngIf="currentUser?._id && currentUser.role === uRoles.userRole" class="nav-item">
-        <a class="nav-link" [routerLink]="['/order-list']">Order List</a>
+        <a class="nav-link" [routerLink]="['/order-list']">Your Orders</a>
+      </li>
+      <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class="nav-item">
+        <a class="nav-link" [routerLink]="['/order-list']">Customers Orders</a>
       </li>
     </ul>
     <form class="d-flex p-2">
@@ -123,9 +126,9 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
                               {{productItem.productname}}<br></strong></h4>
                               <span>{{productItem.Productdescription}}</span>
                           </div>
-                          <div class="col-xs-4 col-sm-2" style="white-space: normal;">
-                            <h4 class="mb-10 text-capitalize" ><strong>
-                              ₹{{productItem.productprice}} ({{productItem.productmargin}}%)<br></strong></h4>
+                          <div class="col-xs-4 col-sm-2" style="white-space: normal; position: absolute; right:0;">
+                            <h4 class="mb-10 text-capitalize"><strong>
+                              ₹{{productItem.productprice}}({{productItem.productmargin}}%)<br></strong></h4>
                           </div>
                         </div>
                         <div class="row search-results-item list-view m-0" *ngIf="productItem.error">

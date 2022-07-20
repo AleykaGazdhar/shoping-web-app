@@ -6,6 +6,7 @@ import { currentUser, GlobalService, JwtService, UsersService } from '../../shar
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ProductService } from '../products/product.service';
+import { environment } from '../../../environments/environment';
 declare var $: any;
 
 @Component({
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   currentUser: currentUser = new currentUser();
+  uRoles: any = environment.role;
   constructor(
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -60,7 +62,11 @@ export class ProductListComponent implements OnInit {
 
   getorderList() {
     this.spinner.show();
-    this.productService.getOrderList({userId: this.currentUser._id}).subscribe({
+    let whereObj = {};
+    if(this.currentUser.role == this.uRoles.userRole) {
+      whereObj = {userId: this.currentUser._id}
+    }
+    this.productService.getOrderList(whereObj).subscribe({
       next: (dataRes: any) => {
         console.log("dataRes========", dataRes);
         if (dataRes.status == 200) {
