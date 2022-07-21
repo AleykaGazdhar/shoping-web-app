@@ -20,8 +20,7 @@ export class UserProfileComponent implements OnInit {
 
   requiredValidation: any = {
     fullName: '',
-    lastname: '',
-    phonenumber: '',
+    phoneNumber: '',
   };
   inValidateCheck: any = {
     phoneNumber: false,
@@ -57,9 +56,10 @@ export class UserProfileComponent implements OnInit {
     const found = ObjectKeys.filter((key: any) => {
       return !postData[key];
     });
+    console.log("found=====", found);
     // this.spinner.show();
     if (found.length) {
-      this.toastr.warning('*Please Fill All Fields are mandatory.', 'Warning');
+      this.toastr.warning('*Fill All Fields are mandatory.', 'Warning');
       this.spinner.hide();
       return false;
     } else if (postData.password && postData.password !== postData.confirm_password) {
