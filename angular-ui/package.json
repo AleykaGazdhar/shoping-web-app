@@ -29,6 +29,7 @@
     "datatables.net-dt": "^1.12.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
+    "ng-multiselect-dropdown": "^1.0.0-beta.19",
     "ngx-bootstrap": "^8.0.0",
     "ngx-spinner": "^14.0.0",
     "ngx-toastr": "^15.0.0",

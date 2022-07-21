@@ -39,7 +39,7 @@ var Users = new Schema({
     type: Number,
     required: true
   },
-  preference: Any,
+  shoppingPreference: Any,
   forgotLink: String,
   forgotStatus: Any,
 }, {

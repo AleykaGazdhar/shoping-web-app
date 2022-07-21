@@ -1,6 +1,12 @@
 <div class="container profile-setting mb-5 mt-3 p-5">
   <div class="row">
-    <h3>Profile Setting</h3>
+    <h3>Profile Setting
+
+    </h3>
+    <ng-multiselect-dropdown name="shoppingPreference" [(ngModel)]="currentUser.shoppingPreference"
+      [data]="shoppingPreference" [placeholder]="'Please Select Your Shopping Preference'" [settings]="dropdownSettings"
+      (onSelect)="onItemSelect($event)" [disabled]="disabled">
+    </ng-multiselect-dropdown>
     <hr class="hrLine m-0">
   </div>
   <div class="row my-4">

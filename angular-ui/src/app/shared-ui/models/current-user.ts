@@ -10,5 +10,6 @@ export class currentUser {
   gender: string = 'male';
   dob: Date = new Date();
   status: number = 1;
+  shoppingPreference: any[] = [];
   role: string = environment.role.userRole;
 }

@@ -17,7 +17,9 @@ export class UserProfileComponent implements OnInit {
   currentUser: currentUser = new currentUser();
   userStaticDetail: any = {};
   fieldTextType: boolean = false;
-
+  shoppingPreference: any = [
+    "Furniture", "Music", "Clothing", "Hardware", "jewellery"
+  ];
   requiredValidation: any = {
     fullName: '',
     phoneNumber: '',
@@ -26,7 +28,9 @@ export class UserProfileComponent implements OnInit {
     phoneNumber: false,
     strongPasswordCheck: false,
   };
-
+  dropdownSettings: any = {};
+  closeDropdownSelection = false;
+  disabled = false;
   constructor(
     private jwtService: JwtService,
     private usersService: UsersService,
@@ -39,6 +43,16 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
     this.userStaticDetail = { ...this.currentUser };
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: "_id",
+      textField: "Please Select Your Shopping Preference",
+      selectAllText: "Select All",
+      unSelectAllText: "UnSelect All",
+      allowSearchFilter: false,
+      itemsShowLimit: 4,
+      closeDropDownOnSelection: this.closeDropdownSelection,
+    };
   }
 
   checkvalidation(key: any) {
@@ -56,7 +70,6 @@ export class UserProfileComponent implements OnInit {
     const found = ObjectKeys.filter((key: any) => {
       return !postData[key];
     });
-    console.log("found=====", found);
     // this.spinner.show();
     if (found.length) {
       this.toastr.warning('*Fill All Fields are mandatory.', 'Warning');
@@ -68,38 +81,47 @@ export class UserProfileComponent implements OnInit {
       return false;
     }
     else {
-      this.doSignUp(postData);
+      this.updatedProfile(postData);
     }
     return;
   }
 
-  doSignUp(postData: any) {
+  updatedProfile(postData: any, type?: string) {
     let savePassword = postData.password;
-    this.usersService.doSignUp(postData).subscribe((data: any) => {
-      this.spinner.hide();
-      if (data.status === 200) {
-        let userDetails = data.data;
-        delete userDetails.profileOldImage;
-        if (savePassword) {
-          this.jwtService.destroyToken();
-          this.globalService.logOut();
-          this.router.navigate(["/login"]);
-          this.toastr.success(data.message, 'Success');
-        } else {
-          this.toastr.success(data.message, 'Success');
-          this.jwtService.saveCurrentUser(JSON.stringify(userDetails));
-          this.currentUser = this.jwtService.getCurrentUser();
-          this.userStaticDetail = { ...this.currentUser };
-          this.globalService.sendActionChildToParent('updatedUserInfo')
+    this.usersService.doSignUp(postData).subscribe(
+      {
+        next: (data: any) => {
+          this.spinner.hide();
+          if (data.status === 200) {
+            let userDetails = data.data;
+            delete userDetails.profileOldImage;
+            if (savePassword) {
+              this.jwtService.destroyToken();
+              this.globalService.logOut();
+              this.router.navigate(["/login"]);
+              if (!type) {
+                this.toastr.success(data.message, 'Success');
+              }
+            } else {
+              if (!type) {
+                this.toastr.success(data.message, 'Success');
+              }
+              this.jwtService.saveCurrentUser(JSON.stringify(userDetails));
+              this.currentUser = this.jwtService.getCurrentUser();
+              this.userStaticDetail = { ...this.currentUser };
+              this.globalService.sendActionChildToParent('updatedUserInfo')
+            }
+          } else {
+            this.toastr.error(data.message, 'Error');
+            this.spinner.hide();
+          }
+        },
+        error: (error: any) => {
+          this.spinner.hide()
+          this.toastr.error(error, 'Error!');
         }
-      } else {
-        this.toastr.error(data.message, 'Error');
-        this.spinner.hide();
       }
-    }, (error: any) => {
-      this.spinner.hide()
-      this.toastr.error(error, 'Error!');
-    });
+    );
     return;
   }
 
@@ -110,6 +132,11 @@ export class UserProfileComponent implements OnInit {
 
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
+  }
+
+  onItemSelect($event: any) {
+    let postData: any = { ...this.currentUser };
+    this.updatedProfile(postData, 'shoppingPreference')
   }
 }
 

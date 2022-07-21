@@ -6,7 +6,6 @@ require("dotenv").config();
 
 exports.doSignUp = async (req, res) => {
   const postData = req.body;
-  console.log("postData=======", postData);
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
@@ -129,7 +128,7 @@ exports.doSignIn = async (req, res) => {
           });
         } else {
           return res.json({
-            message: "Please Firstly check your email and activate your account..",
+            message: "Firstly Please check your email and activate your account..",
             status: 201,
           });
         }
