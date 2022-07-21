@@ -92,8 +92,8 @@ export class UsersService {
     );
   }
 
-  public getUserInfo(param: object): Observable<any> {
-    return this.apiService.post(`${this.users}/getUserInfo`, param).pipe(
+  public updatePassword(param: object): Observable<any> {
+    return this.apiService.post(`${this.users}/updatePassword`, param).pipe(
       map((data) => {
         return data;
       })

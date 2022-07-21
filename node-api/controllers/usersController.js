@@ -6,6 +6,7 @@ require("dotenv").config();
 
 exports.doSignUp = async (req, res) => {
   const postData = req.body;
+  console.log("postData=======", postData);
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
@@ -358,7 +359,7 @@ exports.searchUserData = (req, res) => {
   );
 };
 
-exports.getUserInfo = async (req, res) => {
+exports.updatePassword = async (req, res) => {
   var whereObj = req.body;
   if (whereObj.forgotLink && whereObj._id) {
     whereObj.forgotStatus = 1;
@@ -368,7 +369,7 @@ exports.getUserInfo = async (req, res) => {
         let checkLinkExireTime = globalService.linkExpiryTimeCheck(userDetails.updatedAt); // HERE WE ARE CHECKING LINK TIME EXPIRATION.
         if (checkLinkExireTime) {
           return res.json({
-            message: "Get the user info successfully.",
+            message: "Your account Verified.",
             status: 200,
             data: userDetails,
           });

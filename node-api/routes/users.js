@@ -6,5 +6,6 @@ router.post("/doSignIn", Users.doSignIn);
 router.post('/authentication', Users.authentication);
 router.get('/logout', Users.logout);
 router.post('/activate', Users.activate);
+router.post('/updatePassword', Users.updatePassword);
 router.post('/forgotPassword', Users.forgotPassword);
 module.exports = router;

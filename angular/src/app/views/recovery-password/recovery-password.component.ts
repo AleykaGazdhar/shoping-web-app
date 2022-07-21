@@ -81,9 +81,10 @@ export class RecoveryPasswordComponent implements OnInit {
       _id: this.userId,
       forgotLink: this.link,
     };
-    this.usersService.getUserInfo(postData).subscribe(
+    this.usersService.updatePassword(postData).subscribe(
       {
         next: (data: any) => {
+          console.log("data======", data);
           if (data.status === 200) {
             this.userInfo = data.data;
             this.spinner.hide();
