@@ -3,7 +3,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import{
+import {
   currentUser,
   GlobalService,
   JwtService,
@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { ProductService } from '../app//views/products/product.service';
 import { data } from 'jquery';
 import { environment } from '../environments/environment';
 
@@ -23,15 +22,15 @@ import { environment } from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'shopping-website';
   loadingLabel: string = "Loading... Please Wait.";
-  subscription: Subscription  = new Subscription();
+  subscription: Subscription = new Subscription();
   currentUser: currentUser = new currentUser();
   addClassActiveUser: boolean = false;
   showNav: boolean = false;
   uRoles: any = environment.role;
-  @ViewChild('quickSerachWrap', { static: false})
+  @ViewChild('quickSerachWrap', { static: false })
   public quickSerachWrap: any = ModalDirective;
   productSearch: any = {
     productSearchText: '',
@@ -40,24 +39,23 @@ export class AppComponent  {
   loadingListings: boolean = false;
   productItem: any;
 
-constructor(
-  private jwtService: JwtService,
+  constructor(
+    private jwtService: JwtService,
     private router: Router,
     private globalService: GlobalService,
     private toastr: ToastrService,
     private usersService: UsersService,
     private spinner: NgxSpinnerService,
-    private productService: ProductService
-) {
-  this.subscription = this.globalService
+  ) {
+    this.subscription = this.globalService
       .getActionChildToParent()
-      .subscribe( (message) => {
+      .subscribe((message) => {
         if (message) {
           this.currentUser = this.jwtService.getCurrentUser();
         }
       });
-}
-ngOnInit(): void {
+  }
+  ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
   }
 
@@ -71,41 +69,19 @@ ngOnInit(): void {
   toggleNavbar() {
     this.showNav = !this.showNav;
   }
-
-  getProductSearchdata(searchProductData: String) {
-    this.spinner.show();
-    let validString = searchProductData.replace(/\s/g, ''); //remove space from serached data
-    if(validString) {
-      this.productService.searchProductData({ productSearch: searchProductData }).subscribe(
-        (data) => {
-          if (data.status == 200) {
-            this.spinner.hide();
-            this.quickSearchProductList = data.data;
-          } else {
-            this.spinner.hide();
-            this.quickSearchProductList = [{error: 'No Data Found'}];
-          }
-        },
-        (error) => {
-          this.spinner.hide();
-        }
-      );
-    } else {
-      this.quickSearchProductList = [];
-      this.toastr.warning('Please Enter Product Name.', 'warning');
-      this.spinner.hide();
-    }
+  getProductSearchdata() {
+    this.toastr.info('This Feature is coming soon....', 'Success');
   }
 
- // to blank the field everytime we open the seach bar!!
+  // to blank the field everytime we open the seach bar!!
   closeModel() {
-   this.quickSerachWrap.hide();
-   this.quickSearchProductList = [];
-   this.productSearch.productSearchText = ''
+    this.quickSerachWrap.hide();
+    this.quickSearchProductList = [];
+    this.productSearch.productSearchText = ''
 
   }
 
-  showModel( ) {
+  showModel() {
     this.quickSerachWrap.show();
   }
 }

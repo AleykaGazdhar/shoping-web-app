@@ -7,15 +7,30 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'signup',
-    canActivate:[isFalseAuthGuard],
+    canActivate: [isFalseAuthGuard],
     loadChildren: () =>
       import('./views/signup/signup.module').then((mod) => mod.SignupModule),
   },
   {
     path: 'login',
-    canActivate:[isFalseAuthGuard],
+    canActivate: [isFalseAuthGuard],
     loadChildren: () =>
       import('./views/login/login.module').then((mod) => mod.LoginModule),
+  },
+  {
+    path: 'forgot-password',
+    canActivate: [isFalseAuthGuard],
+    loadChildren: () =>
+      import(
+        './views/forgot-password/forgot-password.module'
+      ).then((mod) => mod.ForgotPasswordModule),
+  },
+  {
+    path: 'recoverpassword/:userId/:token',
+    loadChildren: () =>
+      import(
+        './views/recovery-password/recovery-password.module'
+      ).then((mod) => mod.RecoveryPasswordModule),
   },
   {
     path: 'home',
@@ -28,31 +43,7 @@ const routes: Routes = [
       import('./views/user-profile/user-profile.module').then(
         (mod) => mod.UserProfileModule
       ),
-  },
-  {
-    path: 'products',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./views/products/products.module').then(
-        (mod) => mod.ProductsModule
-      ),
-  },
-  {
-    path: 'order-list',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./views/product-list/product-list.module').then(
-        (mod) => mod.ProductListModule
-      ),
-  },
-  {
-    path: 'product-details/:id',
-    // canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./views/product-details/product-details.module').then(
-        (mod) => mod.ProductDetailsModule
-      ),
-  },
+  }
 ];
 
 @NgModule({
@@ -60,8 +51,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       scrollPositionRestoration: 'enabled',
-  }),
-],
+    }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

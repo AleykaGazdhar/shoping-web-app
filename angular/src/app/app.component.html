@@ -1,23 +1,24 @@
 <!--Navabr-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
-  <i class="fa fa-shopping-bag ml-5" aria-hidden="true"></i><a class="navbar-brand ml-1" [routerLink]="['/home']">&nbsp;Shopping Mart</a>
+  <i class="fa fa-shopping-bag ml-5" aria-hidden="true"></i><a class="navbar-brand ml-1"
+    [routerLink]="['/home']">&nbsp;Shopping Mart</a>
   <button aria-controls="main-nav" (click)="toggleNavbar()" class="navbar-toggler collapsed" type="button"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="main-nav" [ngClass]='{show: showNav}'>
     <button aria-controls="main-nav" (click)="toggleNavbar()" class="navbar-toggler collapsed" type="button"
-          aria-label="Toggle navigation">
-          <i class="fa fa-times"></i>
-        </button>
+      aria-label="Toggle navigation">
+      <i class="fa fa-times"></i>
+    </button>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
-      </li>
-<!--   <li class="nav-item" *ngIf="currentUser?._id">
+      </li> -->
+      <!--   <li class="nav-item" *ngIf="currentUser?._id">
         <a class="nav-link" [routerLink]="['/user-profile']">User Profile</a>
       </li> -->
-      <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class= "nav-item">
+      <!--   <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class="nav-item">
         <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
       <li *ngIf="currentUser?._id && currentUser.role === uRoles.userRole" class="nav-item">
@@ -25,32 +26,33 @@
       </li>
       <li *ngIf="currentUser?._id && currentUser.role === uRoles.adminRole" class="nav-item">
         <a class="nav-link" [routerLink]="['/order-list']">Customers Orders</a>
-      </li>
+      </li> -->
     </ul>
     <form class="d-flex p-2">
       <div class="input-group">
-          <button type="button" class="search-btn btn btn-secondary" (click)="showModel()" id="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button type="button" class="search-btn btn btn-secondary" (click)="showModel()" id="search-btn"><i
+            class="fa fa-search" aria-hidden="true"></i></button>
       </div>
-  </form>
-  <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown dropdownToggle>
-    <span class="text-capitalize align-middle" style="cursor: pointer;"> Welcome {{currentUser.firstname}}</span>
-    <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;"> </i>
-    <ul *dropdownMenu class="dropdown-menu" role="menu">
-      <li class="nav-item">
-        <a class="dropdown-item p-2 pl-3" [routerLink]="['/user-profile']"><i class="fa fa-user p-1"></i>
-          Profile Setting</a>
-        <hr class="m-0">
-      </li>
-      <li class="nav-item">
-        <a class="dropdown-item p-2 pl-3" [routerLink]="['/login']" (click)="logout()" type="submit">
-          <i class="fa fa-lock p-1"></i>
-           logout
-        </a>
-      </li>
-    </ul>
-  </div>
+    </form>
+    <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown dropdownToggle>
+      <span class="text-capitalize align-middle" style="cursor: pointer;"> Welcome {{currentUser.firstname}}</span>
+      <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;"> </i>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li class="nav-item">
+          <a class="dropdown-item p-2 pl-3" [routerLink]="['/user-profile']"><i class="fa fa-user p-1"></i>
+            Profile Setting</a>
+          <hr class="m-0">
+        </li>
+        <li class="nav-item">
+          <a class="dropdown-item p-2 pl-3" [routerLink]="['/login']" (click)="logout()" type="submit">
+            <i class="fa fa-lock p-1"></i>
+            logout
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  <!--<span *ngIf="currentUser?._id" class="navbar-text">
+    <!--<span *ngIf="currentUser?._id" class="navbar-text">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
        <li class="nav-item">
          <div class="p-1 mr-4">
@@ -60,7 +62,7 @@
     </ul>
   </span>-->
 
-  <a *ngIf="!currentUser?._id"  class="navbar-text">
+    <a *ngIf="!currentUser?._id" class="navbar-text">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <div class="p-1">
@@ -72,71 +74,64 @@
             <button class="nav-item btn btn-light" [routerLink]="['/login']" type="button">Login</button>
           </div>
         </li>
-       </ul>
-  </a>
+      </ul>
+    </a>
   </div>
 </nav>
-<ngx-spinner bdColor="rgba(51,51,51,0.8)"
-size="medium"
-color="#fff"
-type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="color: rgb(255, 255, 255)"> Loading... </p>
+</ngx-spinner>
 
 
 <router-outlet></router-outlet>
 
-<!--footer-->
-<footer class="text-center text-lg-start bg-primary text-muted fixed-bottom">
-  <div class="text-center p-4" style="color: white;">
-    ©Copyright 2022:
-    <a class="text-reset fw-bold" href="#">ShoppingMart.com</a>
-  </div>
-</footer>
-<!-- Footer ends-->
-
 <!--search-->
-<div id="quickSerachWrap" bsModal #quickSerachWrap="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class ="container">
+<div id="quickSerachWrap" bsModal #quickSerachWrap="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
         <div class="quickSearchOverlayFormWrap">
           <div class="quickSearchFormWrap">
             <a (click)="closeModel()" class="quickSearchOverlayCloseBtn">
-                <i class="fa fa-times"></i>
+              <i class="fa fa-times"></i>
             </a>
             <form role="form">
-              <div class ="form-group">
+              <div class="form-group">
                 <input id="quickSearchText" type="text" name="products" class="form-control ng-valid ng-dirty"
-                aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-00E-5349"
-                placeholder="Please Enter product Name.." [(ngModel)]="productSearch.productSearchText"
-                (ngModelChange)="getProductSearchdata(productSearch.productSearchText)">
-                <ul role="listbox" aria-hidden="false" active="activeIdx" position="position" class="dropdown-menu" style="display: block; left: 0px;">
-                  <li class="active pt-3 ng-star-inserted" *ngFor="let productItem of quickSearchProductList; let i=index" (click)="closeModel()">
-                      <a class ="ng-star-inserted p-3" style="text-decoration: none;">
-                        <div class ="row search-results-item list-view" *ngIf="!productItem.error" [routerLink]="['/product-details', productItem._id ]">
-                          <div class="col-sm-2 hidden-xs">
-                            <div class="media-list-image-wrap propertyList-slide-wrap" style="overflow: hidden;">
-                              <div class="ng-star-inserted">
-                                <img width="100" height="50" class="lazyOwl img-fluid"
-                                [src]="productItem?.productImg" >
-                              </div>
+                  aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-00E-5349"
+                  placeholder="Please Enter products..." [(ngModel)]="productSearch.productSearchText"
+                  (ngModelChange)="getProductSearchdata()">
+                <ul role="listbox" aria-hidden="false" active="activeIdx" position="position" class="dropdown-menu"
+                  style="display: block; left: 0px;">
+                  <li class="active pt-3 ng-star-inserted"
+                    *ngFor="let productItem of quickSearchProductList; let i=index" (click)="closeModel()">
+                    <a class="ng-star-inserted p-3" style="text-decoration: none;">
+                      <div class="row search-results-item list-view" *ngIf="!productItem.error"
+                        [routerLink]="['/product-details', productItem._id ]">
+                        <div class="col-sm-2 hidden-xs">
+                          <div class="media-list-image-wrap propertyList-slide-wrap" style="overflow: hidden;">
+                            <div class="ng-star-inserted">
+                              <img width="100" height="50" class="lazyOwl img-fluid" [src]="productItem?.productImg">
                             </div>
                           </div>
-                          <div class="col-xs-8 col-sm-6" style="white-space: normal;">
-                            <h4 class="mb-10 text-capitalize" ><strong>
+                        </div>
+                        <div class="col-xs-8 col-sm-6" style="white-space: normal;">
+                          <h4 class="mb-10 text-capitalize"><strong>
                               {{productItem.productname}}<br></strong></h4>
-                              <span>{{productItem.Productdescription}}</span>
-                          </div>
-                          <div class="col-xs-4 col-sm-2" style="white-space: normal; position: absolute; right:0;">
-                            <h4 class="mb-10 text-capitalize"><strong>
+                          <span>{{productItem.Productdescription}}</span>
+                        </div>
+                        <div class="col-xs-4 col-sm-2" style="white-space: normal; position: absolute; right:0;">
+                          <h4 class="mb-10 text-capitalize"><strong>
                               ₹{{productItem.productprice}}({{productItem.productmargin}}%)<br></strong></h4>
-                          </div>
                         </div>
-                        <div class="row search-results-item list-view m-0" *ngIf="productItem.error">
-                          <div class="col-xs-12 col-sm-12" style="white-space: normal;">
-                            <h4 class="mb-10 text-capitalize text-center"><strong>{{productItem.error}}</strong></h4>
-                          </div>
+                      </div>
+                      <div class="row search-results-item list-view m-0" *ngIf="productItem.error">
+                        <div class="col-xs-12 col-sm-12" style="white-space: normal;">
+                          <h4 class="mb-10 text-capitalize text-center"><strong>{{productItem.error}}</strong></h4>
                         </div>
-                      </a>
+                      </div>
+                    </a>
                   </li>
                 </ul>
                 <span class="aroLoader form-control-feedback" *ngIf="loadingListings"></span>
@@ -148,4 +143,3 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
     </div>
   </div>
 </div>
-

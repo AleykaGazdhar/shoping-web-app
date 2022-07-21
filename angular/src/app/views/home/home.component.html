@@ -1,25 +1,25 @@
-<div class="p-5 main-body container-fluid"  >
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  row-cols-lg-4 g-4">
-    <div class="col pb-3" *ngFor="let product of productsList; let i=index">
-      <div class="card h-100 m-auto" >
-        <img [src]="product?.productImg" class="card-img-top product-img p-3" height="200px" [routerLink]="['/product-details', product._id ]">
-        <div class="card-body mt-3">
-          <h5 class="card-title">{{product?.productname}}</h5>
+<div class="app-body">
+  <main class="main d-flex align-items-center pt-5">
+    <div class="container mt-5 p-2 pt-5">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <div class="card-group">
+            <div class="card p-4 mb-0 login-section position-relative">
+              <div class="d-flex custom-border">
+                <span class="secondary-bg"></span>
+                <span class="primary-bg"></span>
+                <span class="secondary-bg"></span>
+                <span class="primary-bg"></span>
+              </div>
+              <div class="card-body text-center">
+                <h4 class="text-primary"> Welcome To Shopping Mart</h4>
+              </div>
+            </div>
+          </div>
+          <!-- <pre [innerHtml]="login | json"> </pre> -->
         </div>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <b class="pull-left">₹ {{product?.productprice}}</b>
-          <b class="pull-right badge bg-danger ms-2">{{product?.productmargin}}% off</b>
-        </li>
-        <li class="list-group-item" [title]="product?.Productdescription">{{product?.Productdescription.substring(0,50)}}</li>
-        </ul>
-        <div class="card-footer">
-          <button type="button" class="btn btn-secondary" (click)="commingSoon()">Add to cart</button>
-          <button type="button" class="btn btn-primary float-right" [routerLink]="['/product-details', product._id ]" data-bs-toggle="button" autocomplete="off" >Buy Product</button>
-        </div>
+
       </div>
     </div>
+  </main>
 </div>
-<br>
-
-

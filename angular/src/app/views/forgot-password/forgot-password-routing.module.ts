@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from './products.component';
+import { ForgotPasswordComponent } from './forgot-password.component';
 
 const routes: Routes = [
-  {
-    path:'', component:ProductsComponent
-  }
+  { path: '', component: ForgotPasswordComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProductsRoutingModule { }
+export class ForgotPasswordRoutingModule { }
