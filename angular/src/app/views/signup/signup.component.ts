@@ -44,15 +44,12 @@ export class SignupComponent implements OnInit {
           [
             Validators.required,
             Validators.minLength(5),
-            Validators.pattern('^[a-zA-Z]+$'),
           ],
         ],
-        lastname: [
+        dob: [
           '',
           [
             Validators.required,
-            Validators.minLength(5),
-            Validators.pattern('^[a-zA-Z]+$'),
           ],
         ],
         email: [
@@ -63,7 +60,7 @@ export class SignupComponent implements OnInit {
             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
           ],
         ],
-        phonenumber: [
+        phoneNumber: [
           '',
           [
             Validators.required,
@@ -93,13 +90,6 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-  /*   configPassword(a: any) {
-    if(a.get('password').value !== a.get('confirmpassword').value) {
-      return {invalid: true };
-    } else {
-      return true;
-    }
-  } */
 
   passwordConfirming(c: any) {
     if (c.get('password').value !== c.get('confirmpassword').value) {
@@ -112,23 +102,27 @@ export class SignupComponent implements OnInit {
   get formError() {
     return this.signupForm.controls;
   }
+
   doSignUp() {
     this.spinner.show();
-    console.log(this.signupForm.value);
-    this.usersService.doSignUp(this.signupForm.value).subscribe(
-      (data: any) => {
-        this.spinner.hide();
-        if (data.status == 200) {
-          this.toastr.info(data.message, 'Success!');
-          this.router.navigate(['/login']);
+    let postDatails = Object.assign({}, this.signupForm.value);
+    delete postDatails.confirmpassword;
+    console.log(postDatails);
+    this.usersService.doSignUp(postDatails).subscribe(
+      {
+        next: (data: any) => {
+          this.spinner.hide();
+          if (data.status == 200) {
+            this.toastr.info(data.message, 'Success!');
+            this.router.navigate(['/login']);
+          }
+        },
+        error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error(error.message, 'Error!');
         }
-      },
-      (error: any) => {
-        this.spinner.hide();
-        this.toastr.error(error.message, 'Error!');
       }
     );
     return;
   }
-
 }

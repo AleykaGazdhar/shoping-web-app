@@ -15,7 +15,7 @@ var Users = new Schema({
     unique: true,
     required: true
   },
-  phonenumber: {
+  phoneNumber: {
     type: String,
     required: true
   },
@@ -39,6 +39,7 @@ var Users = new Schema({
     type: Number,
     required: true
   },
+  preference: Any,
   forgotLink: String,
   forgotStatus: Any,
 }, {

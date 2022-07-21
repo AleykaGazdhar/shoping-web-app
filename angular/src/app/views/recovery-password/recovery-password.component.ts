@@ -125,7 +125,7 @@ export class RecoveryPasswordComponent implements OnInit {
       forgotStatus: 0,
     };
 
-    this.usersService.saveInfo(resetPostData).subscribe(
+    this.usersService.doSignUp(resetPostData).subscribe(
       {
         next: (data: any) => {
           this.spinner.hide();

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SharedUiModule } from '../../shared-ui';
 import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedUiModule } from '../../shared-ui';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     SignupRoutingModule,
     ReactiveFormsModule,
-    SharedUiModule
+    SharedUiModule,
+    BsDatepickerModule.forRoot(),
 
   ]
 })

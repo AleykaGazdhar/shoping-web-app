@@ -1,22 +1,21 @@
 const User = require("../models/usersModel.js");
 const globalService = require("../core/globalService");
 var jwt = require('jsonwebtoken');
-const {
-  ConnectionStates
-} = require("mongoose");
 
 require("dotenv").config();
 
 exports.doSignUp = async (req, res) => {
   const postData = req.body;
-  console.log("postData:", postData)
+  console.log("postData==========", postData);
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
 
   if (postData._id) {
     postData.updatedAt = new Date();
-
+    if (postData.profileOldImage) {
+      globalService.removeFile(postData.profileOldImage, () => {});
+    }
     User.updateOne({
         _id: postData._id,
       },
@@ -46,13 +45,14 @@ exports.doSignUp = async (req, res) => {
       }
     );
   } else {
+    postData.email = postData.email.toLowerCase();
     const addUser = new User();
     Object.keys(postData).forEach((key) => {
       addUser[key] = postData[key];
     });
+    console.log("addUser========", addUser);
     try {
       var userResp = await addUser.save();
-      console.log("userResp========", userResp);
       if (userResp) {
         return res.json({
           message: "User Account Created Successfuly.",
@@ -67,7 +67,6 @@ exports.doSignUp = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log("error========", error);
       return res.json({
         message: "Failed to create an user account.",
         status: 500,
@@ -77,9 +76,8 @@ exports.doSignUp = async (req, res) => {
   }
 };
 
-exports.doLogin = async (req, res) => {
+exports.doSignIn = async (req, res) => {
   const postData = req.body;
-  /**  console.log('postData :', postData)*/
   postData.email = postData.email.toLowerCase();
   process.env.HOST_NAME = "http://" + req.headers.host + "/";
   process.env.WEBSITE_URL = "http://" + req.headers.host + "/#/";
@@ -125,8 +123,6 @@ exports.doLogin = async (req, res) => {
     });
   }
 };
-
-
 
 exports.getUsersList = async (req, res) => {
   try {

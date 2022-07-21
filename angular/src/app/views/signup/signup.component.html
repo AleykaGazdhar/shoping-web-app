@@ -26,8 +26,6 @@
                     *ngIf="formError.fullName.invalid && (formError.fullName.dirty || formError.fullName.touched)">
                     <span *ngIf="formError.fullName.errors.required">Full Name is Required.</span>
                     <span *ngIf="formError.fullName.errors.minlength">Minlength is 3.</span>
-                    <span *ngIf="formError.fullName.errors.pattern">Full Name is not Valid. Please use without
-                      space</span>
                   </p>
                 </div>
                 <div class="mb-3">
@@ -49,15 +47,34 @@
                 <div class="mb-3">
                   <div class="input-group">
                     <span class="input-group-text">
+                      <i class="fa fa-birthday-cake"></i>
+                    </span>
+                    <input type="text" class="form-control" #dp="bsDatepicker" name="daterange" autocomplete="off"
+                      bsDatepicker
+                      [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }"
+                      placeholder="D.O.B" formControlName="dob" ngDisabled>
+                    <span class="input-group-text cursor-default" (click)="dp.toggle()">
+                      <i class="fa fa-calendar"></i>
+                    </span>
+                  </div>
+                  <p class="alert alert-danger mt-1"
+                    *ngIf="formError.dob.invalid && (formError.dob.dirty || formError.dob.touched)">
+                    <span *ngIf="formError.dob.errors.required">DOB is Required.</span>
+                  </p>
+                </div>
+
+                <div class="mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text">
                       <i class="fa fa-phone"></i>
                     </span>
                     <input type="text" numbersOnly class="form-control" maxlength="10" name="phoneNumber"
-                      placeholder="Contact number" autocomplete="off" formControlName="phonenumber">
+                      placeholder="Contact number" autocomplete="off" formControlName="phoneNumber">
                   </div>
                   <p class="alert alert-danger mt-1"
-                    *ngIf="formError.phonenumber.invalid && (formError.phonenumber.dirty || formError.phonenumber.touched) ">
-                    <span *ngIf="formError.phonenumber.errors.required">phonenumber Required.</span>
-                    <span *ngIf="formError.phonenumber.errors.pattern">Should of 10 digit.</span>
+                    *ngIf="formError.phoneNumber.invalid && (formError.phoneNumber.dirty || formError.phoneNumber.touched) ">
+                    <span *ngIf="formError.phoneNumber.errors.required">phone Number Required.</span>
+                    <span *ngIf="formError.phoneNumber.errors.pattern">Should of 10 digit.</span>
 
                   </p>
                 </div>
@@ -96,8 +113,9 @@
                     *ngIf="signupForm.get('password').value && signupForm.get('confirmpassword').value && signupForm.get('password').value !== signupForm.get('confirmpassword').value">
                     <span> Confirm password does not match with the password.</span>
                   </p>
-
                 </div>
+
+
 
                 <div class="row mb-3">
                   <div class="col-form-label col-sm-3 pt-0">Gender <span>*</span>:</div>
@@ -127,7 +145,7 @@
             </div>
           </div>
 
-          <!--<pre [innerHtml]="this.signupForm.value | json"></pre><br><br>-->
+          <pre [innerHtml]="this.signupForm.value | json"></pre><br><br>
         </div>
       </div>
     </div>

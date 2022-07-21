@@ -92,7 +92,6 @@ app.use(bodyParser.urlencoded({
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
-app.use('/uploadImage', require('./controllers/localFileUpload'));
 
 
 // catch 404 and forward to error handler

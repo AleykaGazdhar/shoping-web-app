@@ -28,7 +28,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       closeButton: true,
       preventDuplicates: true,
     }),
-
   ],
   providers: [],
   bootstrap: [AppComponent],
