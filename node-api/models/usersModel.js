@@ -4,35 +4,44 @@ var Any = mongoose.Schema.Types.Mixed;
 // Define collection and schema for Items
 
 var Users = new Schema({
-  firstname: {
+  fullName: {
     type: String,
-    trim: true
-  },
-  lastname: {
-    type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   email: {
     type: String,
     trim: true,
-    unique: true
+    unique: true,
+    required: true
   },
   phonenumber: {
-    type: String
+    type: String,
+    required: true
   },
   password: {
-    type: String
+    type: String,
+    required: true
   },
   gender: {
-    type: String
+    type: String,
+    required: true
   },
   role: {
-    type: String
+    type: String,
+    required: true
+  },
+  dob: {
+    type: String,
+    required: true
   },
   status: {
-    type: Number
+    type: Number,
+    required: true
   },
-  }, {
+  forgotLink: String,
+  forgotStatus: Any,
+}, {
   timestamps: true,
   collection: 'users'
 });

@@ -1,7 +1,7 @@
 import { environment } from "../../../../environments/environment";
 
 export class signupUser {
-  firstName: string = '';
+  fullName: string = '';
   lastName: string = '';
   email: string = '';
   contact: string = '';

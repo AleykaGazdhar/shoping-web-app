@@ -1,7 +1,9 @@
 const User = require("../models/usersModel.js");
 const globalService = require("../core/globalService");
 var jwt = require('jsonwebtoken');
-const { ConnectionStates } = require("mongoose");
+const {
+  ConnectionStates
+} = require("mongoose");
 
 require("dotenv").config();
 
@@ -14,7 +16,7 @@ exports.doSignUp = async (req, res) => {
 
   if (postData._id) {
     postData.updatedAt = new Date();
-   
+
     User.updateOne({
         _id: postData._id,
       },
@@ -77,7 +79,7 @@ exports.doSignUp = async (req, res) => {
 
 exports.doLogin = async (req, res) => {
   const postData = req.body;
- /**  console.log('postData :', postData)*/
+  /**  console.log('postData :', postData)*/
   postData.email = postData.email.toLowerCase();
   process.env.HOST_NAME = "http://" + req.headers.host + "/";
   process.env.WEBSITE_URL = "http://" + req.headers.host + "/#/";
@@ -200,12 +202,12 @@ exports.forgotPassword = (req, res) => {
                 rString;
               var prepareEmailConfig = {
                 email: user.email,
-                firstName: globalService.capitalize(user.firstName),
+                fullName: globalService.capitalize(user.fullName),
                 markerData: {
-                  name: globalService.capitalize(user.firstName),
+                  name: globalService.capitalize(user.fullName),
                   websiteUrl: process.env.WEBSITE_URL,
                   recoverPasswordLink: linkParam,
-                  fristname: user.firstName,
+                  fullName: user.fullName,
                 },
                 templatePath: "public/assets/emailtemplates/forgot-password.html",
                 subject: "Reset your password for AM.ONLINE your account",
@@ -288,7 +290,7 @@ exports.searchUserData = (req, res) => {
   var postData = req.body;
   User.find({
       $or: [{
-          firstName: {
+          fullName: {
             $regex: new RegExp(
               ".*" + postData.quickSearch.toLowerCase() + ".*",
               "i"

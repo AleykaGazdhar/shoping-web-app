@@ -13,11 +13,16 @@ import { DisabledDirective } from './directives/disabled.directive';
 import { AlertComponent } from './alert';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingComponent } from './loading/loading.component';
-import {} from './loading/loading.component';
+import { } from './loading/loading.component';
 import { GrdFilterPipe } from './filters-pipes/grd-filter.pipe';
+import { DataTablesModule } from 'angular-datatables';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
-import { DataTablesModule } from 'angular-datatables';
+import { FormDirective } from './directives/focusInvalidInput.directive';
+import { NatualNumbersOnlyDirective } from './directives/naturalNum.directive';
+import { CharNumOnlyDirective } from './directives/onlyCharNum.directive';
+import { SpecialNumOnlyDirective } from './directives/onlyspecialNum.directive';
+import { DateAgoPipe } from './filters-pipes/date-ago.pipe';
 
 const SHARED_COMPONENTS: any = [
   NumberOnlyDirective,
@@ -26,15 +31,20 @@ const SHARED_COMPONENTS: any = [
   AlertComponent,
   LoadingComponent,
   GrdFilterPipe,
+  FormDirective,
+  NatualNumbersOnlyDirective,
+  SpecialNumOnlyDirective,
+  DateAgoPipe,
+  CharNumOnlyDirective,
 ];
 const SHARED_MODULES: any = [
   CommonModule,
   FormsModule,
-  RouterModule,
   DataTablesModule,
-  NgxSpinnerModule,
+  RouterModule,
   BsDropdownModule.forRoot(),
   ModalModule,
+  DataTablesModule,
   BsDropdownModule.forRoot(),
 ];
 @NgModule({

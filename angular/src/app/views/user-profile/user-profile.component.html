@@ -10,18 +10,19 @@
           <div class="d-flex justify-content-center align-items-start mt-4">
             <label for="fileToUpload" class="rounded-circle">
               <div class="profile-pic">
-                <img id="ImgPreview" src="../../../assets/images/userProfile.png" height="150px" width="150px" class="rounded-circle mr-3" />
+                <img id="ImgPreview" src="../../../assets/images/userProfile.png" height="150px" width="150px"
+                  class="rounded-circle mr-3" />
               </div>
               <!-- <input type="File" name="fileToUpload" id="fileToUpload" class="form-control" accept="image/*"
                 > -->
-                <!-- <button class="rmv"><i
+              <!-- <button class="rmv"><i
                   class="fa fa-times"></i>
                 </button> -->
-              </label>
-              </div>
+            </label>
+          </div>
           <div class="mt-5 text-center">
-            <h4 class="text-capitalize">{{userStaticDetail.firstname}} {{userStaticDetail.lastname}}</h4>
-            <p class="text-secondary mb-1">{{userStaticDetail.firstname}}</p>
+            <h4 class="text-capitalize">{{userStaticDetail.fullName}} {{userStaticDetail.lastname}}</h4>
+            <p class="text-secondary mb-1">{{userStaticDetail.fullName}}</p>
             <p class="text-muted font-size-sm text-capitalize">Bcc House, First Floor, 8/5/5 Manorama Ganj, INDORE</p>
             <div>
             </div>
@@ -29,7 +30,7 @@
 
           <div>
             <ul class="list-unstyled">
-              <li><i class="fa fa-phone me-2"></i> <a>+91{{userStaticDetail.phonenumber}} </a> </li>
+              <li><i class="fa fa-phone me-2"></i> <a>+91{{userStaticDetail.phoneNumber}} </a> </li>
               <li><i class="fa fa-envelope me-2"></i> <a>{{userStaticDetail.email}}</a> </li>
             </ul>
           </div>
@@ -42,39 +43,34 @@
           <div class="row mb-3">
             <label class="col-sm-4 col-form-label fw">
               First Name
-              <sup [ngClass]="checkvalidation('firstname')"><i class="fa fa-star fa-xs"></i></sup>
+              <sup [ngClass]="checkvalidation('fullName')"><i class="fa fa-star fa-xs"></i></sup>
             </label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="First name" name="firstname" id="firstname" [(ngModel)]="currentUser.firstname">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-4 col-form-label fw">
-              Last Name <sup [ngClass]="checkvalidation('lastname')"><i class="fa fa-star fa-xs"></i></sup>
-            </label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Last name" name="lastname" [(ngModel)]="currentUser.lastname">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-4 col-form-label fw">
-              Email <sup [ngClass]="checkvalidation('email')"><i class="fa fa-star fa-xs"></i></sup>
-            </label>
-            <div class="col-sm-8">
-              <input type="text"  class="form-control" placeholder="Email"
-                name="email" [(ngModel)]="currentUser.email" disabled >
+              <input type="text" class="form-control" placeholder="Full name" name="fullName" id="fullName"
+                [(ngModel)]="currentUser.fullName">
             </div>
           </div>
 
           <div class="row mb-3">
             <label class="col-sm-4 col-form-label fw">
-              Phone Number <sup [ngClass]="checkvalidation('phonenumber')"><i class="fa fa-star fa-xs"></i></sup>
+              Email <sup [ngClass]="checkvalidation('email')"><i class="fa fa-star fa-xs"></i></sup>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="currentUser.email"
+                disabled>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label fw">
+              Phone Number <sup [ngClass]="checkvalidation('phoneNumber')"><i class="fa fa-star fa-xs"></i></sup>
             </label>
             <div class="col-sm-8">
               <input type="text" numbersOnly class="form-control" maxlength="10" placeholder="Phone number"
-                name="phonenumber" [(ngModel)]="currentUser.phonenumber" (ngModelChange)="patternMatchCheck(currentUser.phonenumber, 'phoneNumber')">
+                name="phoneNumber" [(ngModel)]="currentUser.phoneNumber"
+                (ngModelChange)="patternMatchCheck(currentUser.phoneNumber, 'phoneNumber')">
               <small class="alert-light fade show" role="alert">
-                Phone number should be  of 10 digits.
+                Phone number should be of 10 digits.
               </small>
             </div>
 
@@ -86,16 +82,20 @@
           <div class="row mb-3">
             <label class="col-sm-4 col-form-label fw">
               Password<sup *ngIf="currentUser.password" [ngClass]="checkvalidation('password')"><i
-                class="fa fa-star fa-xs"></i></sup>
+                  class="fa fa-star fa-xs"></i></sup>
             </label>
             <div class="input-group col-sm-8">
-              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10" placeholder="Password" name="password" [(ngModel)]="currentUser.password" (ngModelChange)="patternMatchCheck(currentUser.password, 'strongPasswordCheck')">
+              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10"
+                placeholder="Password" name="password" [(ngModel)]="currentUser.password"
+                (ngModelChange)="patternMatchCheck(currentUser.password, 'strongPasswordCheck')">
               <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa" [ngClass]= "{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()"> </i>
-                  </span>
+                <span class="input-group-text">
+                  <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }"
+                    (click)="toggleFieldTextType()"> </i>
+                </span>
               </div>
-              <p class="alert fade alert-danger show mt-1" role="alert" *ngIf="currentUser.password && !inValidateCheck.strongPasswordCheck">
+              <p class="alert fade alert-danger show mt-1" role="alert"
+                *ngIf="currentUser.password && !inValidateCheck.strongPasswordCheck">
                 Use Strong Password min 8 characters,1 lowercase letter,1 uppercase letter,1 number ,1 special
                 character.</p>
             </div>
@@ -104,34 +104,35 @@
           <div class="row mb-3">
             <label class="col-sm-4 col-form-label fw">
               Confirm Password <sup *ngIf="currentUser.password" [ngClass]="checkvalidation('confirmpassword')"><i
-                class="fa fa-star fa-xs"></i></sup>
+                  class="fa fa-star fa-xs"></i></sup>
             </label>
             <div class="input-group col-sm-8">
-              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10" placeholder="Confirm Password"
-                name="confirmPassword" [(ngModel)]="currentUser.confirm_password">
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa" [ngClass]= "{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()"> </i>
-                  </span>
+              <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" maxlength="10"
+                placeholder="Confirm Password" name="confirmPassword" [(ngModel)]="currentUser.confirm_password">
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }"
+                    (click)="toggleFieldTextType()"> </i>
+                </span>
               </div>
               <p class="alert alert-danger show mt-1" role="alert"
                 *ngIf="currentUser.password && currentUser.confirm_password && currentUser.password !== currentUser.confirm_password">
                 Confirm Password must match with password.
               </p>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-sm-12 text-secondary">
-              <button type="button" [routerLink]="['/user-profile']" class="btn btn-secondary px-4 m-2">
-                Cancel
-              </button>
-              <button type="button" class="btn btn-primary px-4 m-2" (click)="uploadProfile()"><i
-                  class="fa fa-pencil fa-xs me-2"></i>Edit</button>
             </div>
+
+            <div class="row mt-2">
+              <div class="col-sm-12 text-secondary">
+                <button type="button" [routerLink]="['/user-profile']" class="btn btn-secondary px-4 m-2">
+                  Cancel
+                </button>
+                <button type="button" class="btn btn-primary px-4 m-2" (click)="uploadProfile()"><i
+                    class="fa fa-pencil fa-xs me-2"></i>Edit</button>
+              </div>
+            </div>
+            <!-- <pre [innerHtml]="currentUser | json"> </pre> -->
           </div>
-          <!-- <pre [innerHtml]="currentUser | json"> </pre> -->
         </div>
       </div>
     </div>
   </div>
-</div>

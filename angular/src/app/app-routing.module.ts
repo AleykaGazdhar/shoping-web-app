@@ -34,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./views/home/home.module').then((mod) => mod.HomeModule),
   },

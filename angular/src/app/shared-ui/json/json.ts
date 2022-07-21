@@ -1,15 +1,6 @@
 export const jsonData = {
 
-  statesList: [
-    { name: 'Madhya Pradesh', value: 'madhya pradesh' },
-    { name: 'Chattisgarh', value: 'chattisgarh' },
-    { name: 'Karnataka', value: 'karnataka' },
-    { name: 'Maharashtra', value: 'maharashtra' },
-    { name: 'Tamilnadu', value: 'tamilnadu' },
-    { name: 'Kerrala', value: 'kerrala' },
-  ],
-
-  users: [
+  artists: [
     {
       image: '../../../assets/upload/artist/AR-Rehman.png',
       name: 'AR-Rehman',

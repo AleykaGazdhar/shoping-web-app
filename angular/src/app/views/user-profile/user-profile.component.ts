@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {currentUser, GlobalService,
+import {
+  currentUser, GlobalService,
   JwtService,
-  UsersService,} from '../../shared-ui';
-  import { Router } from '@angular/router';
-  import { NgxSpinnerService } from 'ngx-spinner';
-  import { ToastrService } from 'ngx-toastr';
+  UsersService,
+} from '../../shared-ui';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   fieldTextType: boolean = false;
 
   requiredValidation: any = {
-    firstname: '',
+    fullName: '',
     lastname: '',
     phonenumber: '',
   };
@@ -37,7 +39,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
-    this.userStaticDetail = {...this.currentUser};
+    this.userStaticDetail = { ...this.currentUser };
   }
 
   checkvalidation(key: any) {
@@ -65,7 +67,7 @@ export class UserProfileComponent implements OnInit {
       this.spinner.hide();
       return false;
     }
-      else {
+    else {
       this.doSignUp(postData);
     }
     return;

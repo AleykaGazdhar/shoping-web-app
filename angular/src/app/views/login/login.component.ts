@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.jwtService.deleteCookie(environment.cookieToken);
     }
-    this.usersService.doLogin(loginPostData).subscribe(
+    this.usersService.doSignIn(loginPostData).subscribe(
       (data: any) => {
         this.spinner.hide();
         if (data.status == 200) {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           this.jwtService.saveCurrentUser(JSON.stringify(userDetails));
           this.jwtService.getCurrentUser();
           this.globalService.sendActionChildToParent('Loggin');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/user-profile']);
         } else {
           this.toastr.error(data.message, 'Error');
         }

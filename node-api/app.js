@@ -27,7 +27,6 @@ DBConnection.then(
 
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/users");
-var productRouter = require("./routes/products");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -44,7 +43,6 @@ app.use(session({
 // view engine setup
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('photos'));
 app.use(logger('dev'));
 app.use(express.json()); //Used to parse JSON bodies
 app.use(
@@ -54,7 +52,7 @@ app.use(
   })
 );
 // HERE WE ARE DOING AUTHORIZATION WITH API/UI WITHOUT UI WE CAN'T ACCESS OUR API. IT WILL BE CHANGE AFTER LOGIN ENV.authorization
-/* app.use(async (req, res) => {
+app.use(async (req, res) => {
   const authorization = req.headers.authorization
   if (authorization) {
     const authorization = req.headers.authorization.split(" ")[1]
@@ -82,7 +80,7 @@ app.use(
       });
     }
   }
-}) */
+})
 
 app.use(express.urlencoded({
   extended: true
@@ -94,7 +92,6 @@ app.use(bodyParser.urlencoded({
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
-app.use("/products", productRouter);
 app.use('/uploadImage', require('./controllers/localFileUpload'));
 
 

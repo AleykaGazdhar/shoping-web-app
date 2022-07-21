@@ -10,18 +10,22 @@ var Products = new mongoose.Schema({
   },
   productprice: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   productmargin: {
     type: Number,
-    trim: true
+    trim: true,
+    required: true
   },
   Productdescription: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   status: {
-    type: Number
+    type: Number,
+    required: true
   },
   productImg: Any
 }, {

@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     private globalService: GlobalService,
     private spinner: NgxSpinnerService,
     private usersService: UsersService
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userFormValidation();
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
   userFormValidation() {
     this.signupForm = this.fb.group(
       {
-        firstname: [
+        fullName: [
           '',
           [
             Validators.required,
@@ -84,8 +84,8 @@ export class SignupComponent implements OnInit {
         ],
         confirmpassword: ['', [Validators.required]],
         gender: 'male',
-        status: 1,
-        role : environment.role.userRole,
+        status: 0,
+        role: environment.role.userRole,
 
       },
       {

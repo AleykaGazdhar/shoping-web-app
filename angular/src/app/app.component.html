@@ -35,7 +35,7 @@
       </div>
     </form> -->
     <div *ngIf="currentUser?._id" class="btn-group nav-item slide-down loginUser p-2 mr-3" dropdown dropdownToggle>
-      <span class="text-capitalize align-middle" style="cursor: pointer;"> Welcome {{currentUser.firstname}}</span>
+      <span class="text-capitalize align-middle" style="cursor: pointer;"> Welcome {{currentUser.fullName}}</span>
       <i class="fa fa-gear test-white pl-2 pt-1 fs-5" style="cursor: pointer;"> </i>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
         <li class="nav-item">
