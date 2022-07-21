@@ -148,7 +148,6 @@ export class ProductDetailsComponent implements OnInit {
       postData.razorpayPaymentId = response.razorpay_payment_id;
       postData.amount = Number(postData.amount).toFixed(2);
       this.toastr.success('Payment has been done Successfully');
-      this.toastr.success('Payment has been done Successfully');
       this.savePaymentData(postData);
     } else {
       this.toastr.error('Payment Failed');

@@ -112,7 +112,7 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
                 <ul role="listbox" aria-hidden="false" active="activeIdx" position="position" class="dropdown-menu" style="display: block; left: 0px;">
                   <li class="active pt-3 ng-star-inserted" *ngFor="let productItem of quickSearchProductList; let i=index" (click)="closeModel()">
                       <a class ="ng-star-inserted p-3" style="text-decoration: none;">
-                        <div class ="row search-results-item list-view" *ngIf="!productItem.error" [routerLink]="['/product-details', productItem._id ]">
+                        <div class="row search-results-item list-view" *ngIf="!productItem.error" [routerLink]="['/product-details', productItem._id ]">
                           <div class="col-sm-2 hidden-xs">
                             <div class="media-list-image-wrap propertyList-slide-wrap" style="overflow: hidden;">
                               <div class="ng-star-inserted">
@@ -121,12 +121,12 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
                               </div>
                             </div>
                           </div>
-                          <div class="col-xs-8 col-sm-6" style="white-space: normal;">
+                          <div class="col-sm-8" style="white-space: normal;">
                             <h4 class="mb-10 text-capitalize" ><strong>
                               {{productItem.productname}}<br></strong></h4>
                               <span>{{productItem.Productdescription}}</span>
                           </div>
-                          <div class="col-xs-4 col-sm-2" style="white-space: normal; position: absolute; right:0;">
+                          <div class="col-md-2">
                             <h4 class="mb-10 text-capitalize"><strong>
                               ₹{{productItem.productprice}}({{productItem.productmargin}}%)<br></strong></h4>
                           </div>

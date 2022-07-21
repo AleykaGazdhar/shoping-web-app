@@ -1,10 +1,10 @@
 <div class="app-body">
   <main class="main d-flex align-items-center">
-    <div class="container mt-5 p-2">
+    <div class="container mt-5">
       <div class="row">
         <div class="col-md-4 mx-auto">
           <div class="card-group">
-            <div class="card p-4 mb-0 login-section position-relative">
+            <div class="card  mb-0 login-section position-relative">
               <div class="d-flex custom-border">
                 <span class="secondary-bg"></span>
                 <span class="primary-bg"></span>
@@ -39,16 +39,16 @@
                       name="remember" style="cursor: pointer;" >
                     <label class="form-check-label" for="remember">&nbsp; Remember Me</label>
                   </a>
-                </div>
                 <div class="row float-right">
                   <div class="col-12">
                     <button class="nav-item btn btn-primary" (click)="doLogin()" [disabled]="!login.email  || !login.password">Login</button>
                   </div>
                 </div>
               </div>
-              <div class="text-center mt-20 ">
-                <a [routerLink]="['/signup']">If new User, then Please Signup</a>
-              </div>
+            </div>
+            <div class="text-center alert-light fade show" role="alert">
+              If you are new user,then <a [routerLink]="['/signup']">Please Signup!</a>
+            </div>
             </div>
           </div>
           <!-- <pre [innerHtml]="login | json"> </pre> -->
