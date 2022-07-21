@@ -4,7 +4,7 @@ import { AuthGuard } from './shared-ui/guard/auth.guard';
 import { isFalseAuthGuard } from './shared-ui/guard/isFalse-auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'signup',
     canActivate: [isFalseAuthGuard],

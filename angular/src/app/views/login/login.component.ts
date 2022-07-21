@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private jwtService: JwtService,
     private usersService: UsersService,
     private globalService: GlobalService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.spinner.hide();
@@ -56,15 +56,7 @@ export class LoginComponent implements OnInit {
           this.jwtService.saveCurrentUser(JSON.stringify(userDetails));
           this.jwtService.getCurrentUser();
           this.globalService.sendActionChildToParent('Loggin');
-          if(this.globalService.productViewid) {
-            this.router.navigate(['/product-details', this.globalService.productViewid]);
-          } else {
-            if (userDetails && userDetails.role == environment.role.adminRole) {
-              this.router.navigate(['/products']);
-            } else {
-              this.router.navigate(['/home']);
-            }
-          }
+          this.router.navigate(['/home']);
         } else {
           this.toastr.error(data.message, 'Error');
         }
