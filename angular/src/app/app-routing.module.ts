@@ -39,6 +39,11 @@ const routes: Routes = [
       import('./views/home/home.module').then((mod) => mod.HomeModule),
   },
   {
+    path: 'home/:userId',
+    loadChildren: () =>
+      import('./views/home/home.module').then((mod) => mod.HomeModule),
+  },
+  {
     path: 'user-profile',
     loadChildren: () =>
       import('./views/user-profile/user-profile.module').then(

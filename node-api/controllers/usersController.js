@@ -6,11 +6,9 @@ require("dotenv").config();
 
 exports.doSignUp = async (req, res) => {
   const postData = req.body;
-  console.log("postData==========", postData);
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
-
   if (postData._id) {
     postData.updatedAt = new Date();
     if (postData.profileOldImage) {
@@ -50,15 +48,39 @@ exports.doSignUp = async (req, res) => {
     Object.keys(postData).forEach((key) => {
       addUser[key] = postData[key];
     });
-    console.log("addUser========", addUser);
     try {
       var userResp = await addUser.save();
       if (userResp) {
-        return res.json({
-          message: "User Account Created Successfuly.",
-          status: 200,
-          data: userResp,
-        });
+        const linkParam =
+          process.env.WEBSITE_URL +
+          "home/" +
+          addUser._id;
+        var prepareEmailConfig = {
+          email: addUser.email,
+          fullName: globalService.capitalize(addUser.fullName),
+          markerData: {
+            name: globalService.capitalize(addUser.fullName),
+            websiteUrl: process.env.WEBSITE_URL,
+            activateLink: linkParam,
+            name: globalService.capitalize(addUser.fullName),
+          },
+          templatePath: "public/assets/emailtemplates/welcome-activation.html",
+          subject: "Please Activate your Shoppng Mart account",
+          html: "",
+          templateName: "welcome-activation", // NEW
+        };
+
+        globalService.prepareEmailData(
+          prepareEmailConfig,
+          (err, resp) => {
+            return res.json({
+              message: "Your Account Created Successfuly.",
+              status: 200,
+              data: userResp,
+            });
+          }
+        );
+
       } else {
         return res.json({
           message: "Failed to create account.",
@@ -88,21 +110,28 @@ exports.doSignIn = async (req, res) => {
     try {
       let userDetails = await User.findOne(postData);
       if (userDetails) {
-        var token = jwt.sign({
-          _id: userDetails._id
-        }, process.env.JWT_SECRETKEY, {
-          expiresIn: process.env.TOKEN_EXPIRE // expires in 24 hours 1h, 5m, "10h", "7d"
-        });
-        // console.log("process.env.TOKEN_EXPIRE======", process.env.TOKEN_EXPIRE)
-        userDetails = JSON.parse(JSON.stringify(userDetails));
-        userDetails.authorization = token;
-        req.session.currentUser = userDetails;
-        delete userDetails.password;
-        return res.json({
-          message: "You have signin successfully!",
-          status: 200,
-          data: userDetails,
-        });
+        if (userDetails.status) {
+          var token = jwt.sign({
+            _id: userDetails._id
+          }, process.env.JWT_SECRETKEY, {
+            expiresIn: process.env.TOKEN_EXPIRE // expires in 24 hours 1h, 5m, "10h", "7d"
+          });
+          // console.log("process.env.TOKEN_EXPIRE======", process.env.TOKEN_EXPIRE)
+          userDetails = JSON.parse(JSON.stringify(userDetails));
+          userDetails.authorization = token;
+          req.session.currentUser = userDetails;
+          delete userDetails.password;
+          return res.json({
+            message: "You have signin successfully!",
+            status: 200,
+            data: userDetails,
+          });
+        } else {
+          return res.json({
+            message: "Please Firstly check your email and activate your account..",
+            status: 201,
+          });
+        }
       } else {
         return res.json({
           message: "Please provide valid email or password.",
@@ -203,10 +232,10 @@ exports.forgotPassword = (req, res) => {
                   name: globalService.capitalize(user.fullName),
                   websiteUrl: process.env.WEBSITE_URL,
                   recoverPasswordLink: linkParam,
-                  fullName: user.fullName,
+                  name: globalService.capitalize(user.fullName),
                 },
                 templatePath: "public/assets/emailtemplates/forgot-password.html",
-                subject: "Reset your password for AM.ONLINE your account",
+                subject: "Reset your password for Shoppng Mart your account",
                 html: "",
                 templateName: "forgot-password", // NEW
               };
@@ -354,5 +383,37 @@ exports.getUserInfo = async (req, res) => {
     }
   } else {
     return res.json(globalService.linkExpiryError());
+  }
+};
+
+
+exports.activate = async (req, res) => {
+  const postData = req.body;
+  if (postData._id) {
+    postData.updatedAt = new Date();
+    User.updateOne({
+        _id: postData._id,
+      },
+      postData,
+      (err, resp) => {
+        if (err) {
+          return res.json({
+            status: 500,
+            message: "There are some error while update.",
+            data: err,
+          });
+        } else {
+          return res.json({
+            status: 200,
+            message: 'Your account has been activated successfully.'
+          });
+        }
+      }
+    );
+  } else {
+    return res.json({
+      status: 200,
+      message: 'Please Provide valid paramenter to activate account.'
+    });
   }
 };

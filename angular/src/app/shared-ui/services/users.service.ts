@@ -20,6 +20,14 @@ export class UsersService {
     );
   }
 
+  public activate(param: object): Observable<any> {
+    return this.apiService.post(`${this.users}/activate`, param).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
+
   public doSignIn(param: object): any {
     return this.apiService.post(`${this.users}/doSignIn`, param).pipe(
       map((data) => {
