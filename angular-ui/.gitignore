@@ -3,3 +3,4 @@
 # Compiled output
 /node_modules
 /.angular
+/dist

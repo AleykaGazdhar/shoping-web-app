@@ -102,8 +102,8 @@ exports.doSignUp = async (req, res) => {
 exports.doSignIn = async (req, res) => {
   const postData = req.body;
   postData.email = postData.email.toLowerCase();
-  process.env.HOST_NAME = "http://" + req.headers.host + "/";
-  process.env.WEBSITE_URL = "http://" + req.headers.host + "/#/";
+  // process.env.HOST_NAME = "http://" + req.headers.host + "/";
+  // process.env.WEBSITE_URL = "http://" + req.headers.host + "/#/";
   postData.password = globalService.encryptString(postData.password);
   if (postData.email) {
     // delete postData.password;
