@@ -91,12 +91,12 @@
             </div>
             <div class="col-md-9">
               <input type="text" class="form-control" id="ProductName" autocomplete="off" formControlName="productname">
-            </div>
-            <p class="alert alert-danger mt-1"
+              <p class="alert alert-danger mt-1"
               *ngIf="formError.productname.invalid && (formError.productname.dirty || formError.productname.touched)">
               <span *ngIf="formError.productname.errors.required">Product Name is Required.</span>
               <span *ngIf="formError.productname.errors.maxlength">MaxLength is 20.</span>
-            </p>
+              </p>
+            </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-3">
@@ -104,27 +104,27 @@
             </div>
             <div class="col-md-9">
               <input type="text" class="form-control" id="productPrice" autocomplete="off"
-                formControlName="productprice">
+                formControlName="productprice" numbersOnly>
+                <p class="alert alert-danger mt-1"
+                  *ngIf="formError.productprice.invalid && (formError.productprice.dirty || formError.productprice.touched)">
+                  <span *ngIf="formError.productprice.errors.required">Product Price is Required.</span>
+                  <span *ngIf="formError.productprice.errors.maxlength">MaxLength is 5.</span>
+                </p>
             </div>
-            <p class="alert alert-danger mt-1"
-              *ngIf="formError.productprice.invalid && (formError.productprice.dirty || formError.productprice.touched)">
-              <span *ngIf="formError.productprice.errors.required">Product Price is Required.</span>
-              <span *ngIf="formError.productprice.errors.maxlength">MaxLength is 5.</span>
-            </p>
           </div>
           <div class="row mb-3">
             <div class="col-md-3">
               <label for="productmargin" class=" col-form-label">Product Margin</label>
             </div>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="productMargin" autocomplete="off"
+              <input type="text" class="form-control" id="productMargin" autocomplete="off" numbersOnly
                 formControlName="productmargin">
-            </div>
-            <p class="alert alert-danger mt-1"
+             <p class="alert alert-danger mt-1"
               *ngIf="formError.productmargin.invalid && (formError.productmargin.dirty || formError.productmargin.touched)">
               <span *ngIf="formError.productmargin.errors.required">Product Margin is Required.</span>
               <span *ngIf="formError.productmargin.errors.maxlength">MaxLength is 5.</span>
             </p>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="ProductDescription" class="col-form-label">Product Description</label>
@@ -165,7 +165,7 @@
             (click)="addProduct()">{{ productForm.value._id ? 'Edit' : 'Add'}} Product</button>
           <button type="button" class="btn btn-danger" (click)="closeModel()">Close</button>
         </div>
-        <pre [innerHtml]="this.productForm.value | json"></pre><br><br>
+        <!--<pre [innerHtml]="this.productForm.value | json"></pre><br><br>-->
       </div>
     </div>
   </div>

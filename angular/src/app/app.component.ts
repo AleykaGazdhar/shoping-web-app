@@ -30,6 +30,7 @@ export class AppComponent  {
   currentUser: currentUser = new currentUser();
   addClassActiveUser: boolean = false;
   showNav: boolean = false;
+  showScroll: boolean = true;
   uRoles: any = environment.role;
   @ViewChild('quickSerachWrap', { static: false})
   public quickSerachWrap: any = ModalDirective;
@@ -59,6 +60,10 @@ constructor(
 }
 ngOnInit(): void {
     this.currentUser = this.jwtService.getCurrentUser();
+  }
+
+  scrollToTop() {
+    $('html, body').animate({ scrollTop: 0 }, 600);
   }
 
   logout() {

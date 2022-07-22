@@ -1,4 +1,4 @@
-<div class="p-5 main-body container-fluid"  >
+<div *ngIf= "productsList.length"class="p-5 main-body container-fluid"  >
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  row-cols-lg-4 g-4">
     <div class="col pb-3" *ngFor="let product of productsList; let i=index">
       <div class="card h-100 m-auto" >
@@ -15,7 +15,7 @@
         </ul>
         <div class="card-footer">
           <button type="button" class="btn btn-secondary" (click)="commingSoon()">Add to cart</button>
-          <button type="button" class="btn btn-primary float-right" [routerLink]="['/product-details', product._id ]" data-bs-toggle="button" autocomplete="off" >Buy Product</button>
+          <button type="button" class="btn btn-primary float-right" [routerLink]="['/product-details', product._id]" data-bs-toggle="button" autocomplete="off" >Buy Product</button>
         </div>
       </div>
     </div>

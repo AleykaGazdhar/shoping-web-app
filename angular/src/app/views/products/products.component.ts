@@ -166,16 +166,17 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct() {
-    console.log(this.productForm.value);
+    this.spinner.show();
     this.productService.addProduct(this.productForm.value).subscribe(
       (data: any) => {
-        this.spinner.show();
+        this.ProductModal.hide();
+        this.getProductsList();
         if (data.status == 200) {
           this.toastr.info(data.message, 'Success! Product is added.');
-          this.ProductModal.hide();
-          this.spinner.hide();
-          this.getProductsList();
+        } else {
+          this.toastr.error(data.message, 'Success! Product is added.');
         }
+        this.spinner.hide();
       },
       (error: any) => {
         this.spinner.hide();

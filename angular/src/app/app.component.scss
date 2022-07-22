@@ -19,6 +19,35 @@
   }
 }
 
+.backtotop {
+  position: fixed;
+  bottom: 60px;
+  right: 5px;
+  opacity: 0;
+  transition: all 0.4s ease 0s;
+
+  button {
+    background: rgb(0, 153, 255);
+    border-width: 0px;
+    box-shadow: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    margin-bottom: 15px;
+  }
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.show-scrollTop {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+
 
 .img {
   max-width: 100%;

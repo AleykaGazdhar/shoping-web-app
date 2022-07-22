@@ -93,6 +93,14 @@ type="ball-scale-multiple"><p style="color: rgb(255, 255, 255)" > Loading... </p
 </footer>
 <!-- Footer ends-->
 
+<!--scroll to top-->
+<div class="backtotop" [ngClass]="{'show-scrollTop': showScroll}">
+  <button (click)="scrollToTop()">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+</div>
+<!--finshed-->
+
 <!--search-->
 <div id="quickSerachWrap" bsModal #quickSerachWrap="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class ="container">
