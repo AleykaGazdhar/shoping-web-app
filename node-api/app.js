@@ -44,7 +44,6 @@ app.use(session({
 // view engine setup
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('photos'));
 app.use(logger('dev'));
 app.use(express.json()); //Used to parse JSON bodies
 app.use(
