@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group(
       {
         fullName: [
-          'bharat',
+          '',
           [
             Validators.required,
             Validators.minLength(5),
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
           ],
         ],
         email: [
-          'bharat@amwebtech.com',
+          '',
           [
             Validators.required,
             Validators.email,
@@ -61,7 +61,7 @@ export class SignupComponent implements OnInit {
           ],
         ],
         phoneNumber: [
-          '9589610545',
+          '',
           [
             Validators.required,
             Validators.minLength(3),
@@ -70,7 +70,7 @@ export class SignupComponent implements OnInit {
           ],
         ],
         password: [
-          'Bharat@123',
+          '',
           Validators.compose([
             Validators.required,
             Validators.minLength(8),
@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
             ),
           ]),
         ],
-        confirmpassword: ['Bharat@123', [Validators.required]],
+        confirmpassword: ['', [Validators.required]],
         gender: 'male',
         status: 0,
         role: environment.role.userRole,

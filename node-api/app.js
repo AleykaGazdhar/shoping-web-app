@@ -9,7 +9,10 @@ const mongoose = require('mongoose')
 var cookieParser = require("cookie-parser");
 const logger = require('morgan');
 const globalService = require("./core/globalService");
+const swaggerUi = require('swagger-ui-express');
+
 mongoose.Promise = global.Promise;
+
 
 // connect to db
 var DB = require("./core/db");

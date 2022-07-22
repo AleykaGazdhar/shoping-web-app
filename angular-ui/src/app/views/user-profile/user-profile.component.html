@@ -28,8 +28,6 @@
           </div>
           <div class="mt-5 text-center">
             <h4 class="text-capitalize">{{userStaticDetail.fullName}} </h4>
-            <p class="text-muted font-size-sm text-capitalize">Demo Address: Bcc House, First Floor, 8/5/5 Manorama
-              Ganj, INDORE</p>
             <div>
             </div>
           </div>
@@ -121,11 +119,11 @@
                     (click)="toggleFieldTextType()"> </i>
                 </span>
               </div>
-              <p class="alert alert-danger show mt-1" role="alert"
-                *ngIf="currentUser.password && currentUser.confirm_password && currentUser.password !== currentUser.confirm_password">
-                Confirm Password must match with password.
-              </p>
             </div>
+            <p class="alert alert-danger show mt-1" role="alert"
+              *ngIf="currentUser.password && currentUser.confirm_password && currentUser.password !== currentUser.confirm_password">
+              Confirm Password must match with password.
+            </p>
 
             <div class="row mt-2">
               <div class="col-sm-12 text-secondary">
