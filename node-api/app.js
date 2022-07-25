@@ -63,6 +63,7 @@ app.use(
 // HERE WE ARE DOING AUTHORIZATION WITH API/UI WITHOUT UI WE CAN'T ACCESS OUR API. IT WILL BE CHANGE AFTER LOGIN ENV.authorization
 app.use(async (req, res) => {
   const authorization = req.headers.authorization
+  console.log("req.headers========", req.headers);
   if (authorization) {
     const authorization = req.headers.authorization
     // const authorization = req.headers.authorization.split(" ")[1]
@@ -72,7 +73,7 @@ app.use(async (req, res) => {
       } else {
         return res.json({
           status: 401,
-          error: "You are unauthorized users. Please authorize first",
+          error: "You are unauthorized users. Please Login and authorize first",
         });
       }
     });
@@ -86,7 +87,7 @@ app.use(async (req, res) => {
     } else {
       return res.json({
         status: 401,
-        error: "You are unauthorized users. Please authorize first",
+        error: "You are unauthorized users. Please Login and authorize first",
       });
     }
   }
