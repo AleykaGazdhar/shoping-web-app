@@ -14,7 +14,7 @@ exports.doSignUp = async (req, res) => {
     if (postData.profileOldImage) {
       globalService.removeFile(postData.profileOldImage, () => {});
     }
-    User.updateOne({
+    User.findByIdAndUpdate({
         _id: postData._id,
       },
       postData,
@@ -36,7 +36,7 @@ exports.doSignUp = async (req, res) => {
           return res.json({
             status: 200,
             message: checkPassword ?
-              "Your password has been changed successfully." : "User Profile Updated successfully.",
+              "Your password has been changed successfully." : "User Details has been Updated successfully.",
             data: postData,
           });
         }
@@ -405,7 +405,7 @@ exports.activate = async (req, res) => {
         } else {
           return res.json({
             status: 200,
-            message: 'Your account has been activated successfully.'
+            message: 'Your account has been activated successfully. Please Login to continue.'
           });
         }
       }

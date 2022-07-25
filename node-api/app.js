@@ -9,7 +9,6 @@ const mongoose = require('mongoose')
 var cookieParser = require("cookie-parser");
 const logger = require('morgan');
 const globalService = require("./core/globalService");
-const swaggerUi = require('swagger-ui-express');
 
 mongoose.Promise = global.Promise;
 
@@ -33,6 +32,15 @@ var userRouter = require("./routes/users");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const swaggerUi = require('swagger-ui-express');
+// const swaggerJsDoc = require('swagger-jsdoc');
+// const swaggerJsDoc = require('./swagger.json');
+const swaggerJsDoc = require('./swagger-3.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc))
+
+
+
+
 // session setup
 app.use(session({
   secret: process.env.SESSION_SECRETKEY,
@@ -40,8 +48,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-
-
 
 // view engine setup
 app.use(bodyParser.json());
@@ -58,14 +64,15 @@ app.use(
 app.use(async (req, res) => {
   const authorization = req.headers.authorization
   if (authorization) {
-    const authorization = req.headers.authorization.split(" ")[1]
+    const authorization = req.headers.authorization
+    // const authorization = req.headers.authorization.split(" ")[1]
     globalService.verifyToken(authorization, (verifyResp) => {
       if (verifyResp.verify) {
         return req.next();
       } else {
         return res.json({
           status: 401,
-          error: "You are unauthorized users.",
+          error: "You are unauthorized users. Please authorize first",
         });
       }
     });
@@ -79,7 +86,7 @@ app.use(async (req, res) => {
     } else {
       return res.json({
         status: 401,
-        error: "You are unauthorized users.",
+        error: "You are unauthorized users. Please authorize first",
       });
     }
   }
@@ -101,7 +108,6 @@ app.use("/users", userRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

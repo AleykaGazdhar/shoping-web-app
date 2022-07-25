@@ -13,7 +13,7 @@ export class UsersService {
   constructor(private apiService: ApiService) { }
 
   public doSignUp(param: object): Observable<any> {
-    return this.apiService.post(`${this.users}/doSignUp`, param).pipe(
+    return this.apiService.post(`${this.users}/signup`, param).pipe(
       map((data) => {
         return data;
       })
@@ -29,7 +29,7 @@ export class UsersService {
   }
 
   public doSignIn(param: object): any {
-    return this.apiService.post(`${this.users}/doSignIn`, param).pipe(
+    return this.apiService.post(`${this.users}/signin`, param).pipe(
       map((data) => {
         return data;
       })

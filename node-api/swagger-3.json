@@ -1,0 +1,218 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Shopping Mart Api",
+    "description": "Shopping Mart Project Application Node & Express API.",
+    "version": "3.0"
+  },
+  "servers": [{
+      "url": "http://localhost:3000/"
+    },
+    {
+      "url": "https://shopping-mart-demo.herokuapp.com"
+    }
+  ],
+  "tags": [{
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Products",
+      "description": "API for Products in the system"
+    }
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create new user in system",
+        "description": "Create new user in system",
+        "requestBody": {
+          "description": "You should pass here email",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullName": {
+                    "type": "string",
+                    "default": "Bharat Kumar Sen"
+                  },
+                  "email": {
+                    "type": "string",
+                    "default": "Bharat@amwebtech.com"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "default": "5/05/1990"
+                  },
+                  "phoneNumber": {
+                    "type": "number"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "default": "male"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Bharat@123"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/activate": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Activate Singup user from system",
+        "description": "Activate Singup user from system",
+        "requestBody": {
+          "description": "You should pass here email",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "default": "62de5c60ba2338586a2ba326"
+                  },
+                  "status": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Signin user in system",
+        "description": "Signin user in system",
+        "requestBody": {
+          "description": "You should pass here email",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "default": "Bharat@amwebtech.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Bharat@123"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/addPreference": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "After login user can add shopping preference ",
+        "description": "After login user can add shopping preference ",
+        "requestBody": {
+          "description": "You should pass here token , _id, preference list in array",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "default": "62de5c60ba2338586a2ba326"
+                  },
+                  "shoppingPreference": {
+                    "type": "array",
+                    "default": "Furniture, music, clothing, hardware, jewellery"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Logout from Api",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "authorization",
+        "in": "header"
+      }
+    }
+  }
+}

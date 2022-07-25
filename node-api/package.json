@@ -26,6 +26,8 @@
     "nodemailer": "^6.6.5",
     "nodemon": "^2.0.12",
     "razorpay": "^2.8.0",
-    "stripe": "^8.191.0"
+    "stripe": "^8.191.0",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.5.0"
   }
 }

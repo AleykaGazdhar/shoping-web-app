@@ -16,7 +16,7 @@ var Users = new Schema({
     required: true
   },
   phoneNumber: {
-    type: String,
+    type: Number,
     required: true
   },
   password: {
@@ -29,7 +29,8 @@ var Users = new Schema({
   },
   role: {
     type: String,
-    required: true
+    default: 'user',
+    required: true,
   },
   dob: {
     type: String,
@@ -37,6 +38,7 @@ var Users = new Schema({
   },
   status: {
     type: Number,
+    default: 1,
     required: true
   },
   shoppingPreference: Any,

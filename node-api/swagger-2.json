@@ -1,0 +1,189 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.0",
+    "title": "Shopping Mart Api",
+    "description": "Shopping Mart Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [{
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Products",
+      "description": "API for Products in the system"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new user in system",
+        "description": "Create new user in system",
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "You should pass here email",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "fullName": {
+                "type": "string",
+                "default": "Bharat Kumar Sen"
+              },
+              "email": {
+                "type": "string",
+                "default": "Bharat@amwebtech.com"
+              },
+              "dob": {
+                "type": "string",
+                "default": "5/05/1990"
+              },
+              "phoneNumber": {
+                "type": "number",
+                "default": "9589610545"
+              },
+              "gender": {
+                "type": "string",
+                "default": "male"
+              },
+              "password": {
+                "type": "string",
+                "default": "Bharat@123"
+              }
+            }
+          }
+        }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created"
+          }
+        }
+      }
+    },
+    "/users/activate": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new user in system",
+        "description": "Create new user in system",
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "You should pass here email",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "default": "62de5c60ba2338586a2ba326"
+              },
+              "status": {
+                "type": "number",
+                "default": "1"
+              }
+            }
+          }
+        }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created"
+          }
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new user in system",
+        "description": "Create new user in system",
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "You should pass here email",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "default": "Bharat@amwebtech.com"
+              },
+              "password": {
+                "type": "string",
+                "default": "Bharat@123"
+              }
+            }
+          }
+        }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/addPreference": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "tags": ["Users"],
+        "summary": "Create new user in system",
+        "description": "Create new user in system",
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "You should pass here email",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "default": "62de5c60ba2338586a2ba326"
+              },
+              "shoppingPreference": {
+                "type": "array",
+                "default": "Furniture,music,clothing,hardware,jewellery"
+              }
+            }
+          }
+        }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Logout from Api",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

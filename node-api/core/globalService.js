@@ -8,7 +8,7 @@ var moment = require("moment");
 var jwt = require('jsonwebtoken');
 
 exports.authenticationFalsePage = () => {
-  return ['doSignUp', 'logout', 'activate', 'forgotPassword', 'doSignIn', 'updatePassword']
+  return ['signup', 'logout', 'activate', 'forgotPassword', 'signin', 'updatePassword']
 };
 
 exports.prepareEmailData = (EmailConfig, callBack) => {
