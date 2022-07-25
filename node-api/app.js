@@ -63,7 +63,6 @@ app.use(
 // HERE WE ARE DOING AUTHORIZATION WITH API/UI WITHOUT UI WE CAN'T ACCESS OUR API. IT WILL BE CHANGE AFTER LOGIN ENV.authorization
 app.use(async (req, res) => {
   const authorization = req.headers.authorization
-  console.log("req.headers========", req.headers);
   if (authorization) {
     const authorization = req.headers.authorization
     // const authorization = req.headers.authorization.split(" ")[1]

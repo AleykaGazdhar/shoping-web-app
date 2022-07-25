@@ -204,6 +204,76 @@
           }
         }
       }
+    },
+    "/users/forgotPassword": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Forgot password in system ",
+        "description": "Forgot password in system ",
+        "requestBody": {
+          "description": "You should pass here token , _id, preference list in array",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "default": "bharat@amwebtech.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/updatePassword": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Forgot password in system ",
+        "description": "Forgot password in system ",
+        "requestBody": {
+          "description": "You should pass here token , _id, preference list in array",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "default": "bharat@amwebtech.com"
+                  },
+                  "forgotLink": {
+                    "type": "string",
+                    "default": "bharat@amwebtech.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
     }
   },
   "components": {

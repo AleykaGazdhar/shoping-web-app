@@ -245,6 +245,8 @@ exports.forgotPassword = (req, res) => {
                 (err, resp) => {
                   return res.json({
                     status: 200,
+                    _id: user._id,
+                    forgotLink: rString,
                     message: "Please check your email, Reset password link has been sent to " +
                       user.email +
                       ".",
