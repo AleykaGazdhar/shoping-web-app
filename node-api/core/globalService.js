@@ -8,7 +8,7 @@ var moment = require("moment");
 var jwt = require('jsonwebtoken');
 
 exports.authenticationFalsePage = () => {
-  return ['signup', 'logout', 'activate', 'forgotPassword', 'signin', 'updatePassword']
+  return ['signup', 'logout', 'activate', 'forgotPassword', 'signin', 'changePassword']
 };
 
 exports.prepareEmailData = (EmailConfig, callBack) => {
@@ -210,7 +210,7 @@ exports.linkExpiryTimeCheck = (UpdatedAT) => {
 exports.linkExpiryError = () => {
   return {
     status: 500,
-    message: "Forgot Password Link has been expired. Please check link or again you can request for forgot password!.",
-    data: "Forgot Password Link has been expired. Please check link or again you can request for forgot password!.",
+    message: "Forgot Password token has been expired. Please check token or again you can request for forgot password!.",
+    data: "Forgot Password token has been expired. Please check token or again you can request for forgot password!.",
   };
 };

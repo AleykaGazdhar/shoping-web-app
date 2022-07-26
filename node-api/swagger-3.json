@@ -1,24 +1,24 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Shopping Mart Api",
+    "title": "Shopping Mart Node & Express API.",
     "description": "Shopping Mart Project Application Node & Express API.",
     "version": "3.0"
   },
   "servers": [{
-      "url": "http://localhost:3000/"
+      "url": "https://shopping-mart-demo.herokuapp.com"
     },
     {
-      "url": "https://shopping-mart-demo.herokuapp.com"
+      "url": "http://localhost:3000/"
     }
   ],
   "tags": [{
       "name": "Users",
-      "description": "API for users in the system"
+      "description": "API for users in the system."
     },
     {
       "name": "Products",
-      "description": "API for Products in the system"
+      "description": "Comming soon Product Api in the system."
     }
   ],
   "paths": {
@@ -30,7 +30,7 @@
         "summary": "Create new user in system",
         "description": "Create new user in system",
         "requestBody": {
-          "description": "You should pass here email",
+          "description": "You should pass here body parameter",
           "content": {
             "application/json": {
               "schema": {
@@ -79,10 +79,10 @@
         "tags": [
           "Users"
         ],
-        "summary": "Activate Singup user from system",
-        "description": "Activate Singup user from system",
+        "summary": "Activate Singup user from system.",
+        "description": "Activate Singup user from system.",
         "requestBody": {
-          "description": "You should pass here email",
+          "description": "You should pass here _id and status to activate user.",
           "content": {
             "application/json": {
               "schema": {
@@ -103,7 +103,7 @@
         },
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New user is Activated.",
             "content": {}
           }
         },
@@ -115,10 +115,10 @@
         "tags": [
           "Users"
         ],
-        "summary": "Signin user in system",
-        "description": "Signin user in system",
+        "summary": "Signin user in system.",
+        "description": "Signin user in system.",
         "requestBody": {
-          "description": "You should pass here email",
+          "description": "You should pass here email and password.",
           "content": {
             "application/json": {
               "schema": {
@@ -140,7 +140,7 @@
         },
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "User is logged in here.",
             "content": {
               "application/json": {
                 "schema": {}
@@ -159,10 +159,10 @@
         "security": [{
           "Bearer": []
         }],
-        "summary": "After login user can add shopping preference ",
-        "description": "After login user can add shopping preference ",
+        "summary": "Login user can add shopping preference.",
+        "description": "Login user can add shopping preference after login but firstly pass authorize token for it  click to authorize button in top.",
         "requestBody": {
-          "description": "You should pass here token , _id, preference list in array",
+          "description": "You should pass here token , _id, preference list in array but firstly pass authorize token for it  click to authorize button in top.",
           "content": {
             "application/json": {
               "schema": {
@@ -184,11 +184,26 @@
         },
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New user can add preferences after login but firstly pass authorize token for it  click to authorize button in top.",
             "content": {}
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/users/getUsersList": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user list from the Api system after login.",
+        "description": "Get user list from the Api system after login but firstly pass authorize token for it  click to authorize button in top.",
+        "responses": {
+          "200": {
+            "description": "Get user list from the Api system after login but firstly pass authorize token for it  click to authorize button in top.",
+            "content": {}
+          }
+        }
       }
     },
     "/users/logout": {
@@ -196,6 +211,9 @@
         "tags": [
           "Users"
         ],
+        "security": [{
+          "Bearer": []
+        }],
         "summary": "Logout from Api",
         "responses": {
           "200": {
@@ -211,9 +229,9 @@
           "Users"
         ],
         "summary": "Forgot password in system ",
-        "description": "Forgot password in system ",
+        "description": "Forgot password in system. You will get the email notification.",
         "requestBody": {
-          "description": "You should pass here token , _id, preference list in array",
+          "description": "You should pass here token , _id, preference list in array.",
           "content": {
             "application/json": {
               "schema": {
@@ -231,22 +249,22 @@
         },
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "Forgot token is given for the changing password.",
             "content": {}
           }
         },
         "x-codegen-request-body-name": "body"
       }
     },
-    "/users/updatePassword": {
+    "/users/verifyAndChangePassword": {
       "post": {
         "tags": [
           "Users"
         ],
-        "summary": "Forgot password in system ",
-        "description": "Forgot password in system ",
+        "summary": "Change password in system ",
+        "description": "Change password in system with token and status, _id, password. ",
         "requestBody": {
-          "description": "You should pass here token , _id, preference list in array",
+          "description": "You should pass here _id, password, forgotToken, forgotStatus.",
           "content": {
             "application/json": {
               "schema": {
@@ -254,11 +272,19 @@
                 "properties": {
                   "_id": {
                     "type": "string",
-                    "default": "bharat@amwebtech.com"
+                    "default": "62de5c60ba2338586a2ba326"
                   },
-                  "forgotLink": {
+                  "password": {
                     "type": "string",
-                    "default": "bharat@amwebtech.com"
+                    "default": "Bharat@123"
+                  },
+                  "forgotToken": {
+                    "type": "string",
+                    "default": "piyZVB8QazWTTQM6aJr6ZCeH2JURlzd1DmN5I3vpGAy4JIqq5a3p5ubd7kXbZZCGKbEzoZwJJwV8uavCHLtHL85R6uN1qtc23tvp5QXfW2lU2MPE4IlGTHLAW40UTK7QNkT8W7nvrStT2nGI6ELfjUdPCdhnwCJN19qT6L3XBDcV0vifwhpJVeCWN6dFKKqAt86GMDYBJUg2aDG6yzakJyZiS3HIvHCcMXNn94tAeMhGz9DjatEkih"
+                  },
+                  "forgotStatus": {
+                    "type": "number",
+                    "default": "1"
                   }
                 }
               }
@@ -268,7 +294,7 @@
         },
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "Password is changed by user with token and status.",
             "content": {}
           }
         },

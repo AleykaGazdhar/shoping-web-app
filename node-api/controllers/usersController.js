@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 
 require("dotenv").config();
 
-exports.doSignUp = async (req, res) => {
+exports.saveUserDetails = async (req, res) => {
   const postData = req.body;
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
@@ -214,7 +214,7 @@ exports.forgotPassword = (req, res) => {
         User.updateOne({
             _id: user._id,
           }, {
-            forgotLink: rString,
+            forgotToken: rString,
             forgotStatus: 1,
           },
           (err, forgotResp) => {
@@ -246,7 +246,7 @@ exports.forgotPassword = (req, res) => {
                   return res.json({
                     status: 200,
                     _id: user._id,
-                    forgotLink: rString,
+                    forgotToken: rString,
                     message: "Please check your email, Reset password link has been sent to " +
                       user.email +
                       ".",
@@ -360,20 +360,45 @@ exports.searchUserData = (req, res) => {
   );
 };
 
-exports.updatePassword = async (req, res) => {
-  var whereObj = req.body;
-  if (whereObj.forgotLink && whereObj._id) {
-    whereObj.forgotStatus = 1;
+exports.verifyAndChangePassword = async (req, res) => {
+  var bodyParm = req.body;
+  if (bodyParm.forgotToken && bodyParm._id) {
+    var whereObj = Object.assign({}, bodyParm);
+    delete whereObj.password;
     try {
       let userDetails = await User.findOne(whereObj);
       if (userDetails) {
         let checkLinkExireTime = globalService.linkExpiryTimeCheck(userDetails.updatedAt); // HERE WE ARE CHECKING LINK TIME EXPIRATION.
         if (checkLinkExireTime) {
-          return res.json({
-            message: "Your account Verified.",
-            status: 200,
-            data: userDetails,
-          });
+          bodyParm.forgotStatus = 0;
+          bodyParm.forgotToken = '';
+          if (bodyParm.password) {
+            User.updateOne({
+                _id: bodyParm._id,
+              },
+              bodyParm,
+              (err, resp) => {
+                if (err) {
+                  return res.json({
+                    status: 500,
+                    message: "There are some error while update password.",
+                    data: err,
+                  });
+                } else {
+                  return res.json({
+                    status: 200,
+                    message: "Your password has been changed successfully. Please login to continue"
+                  });
+                }
+              }
+            );
+          } else {
+            return res.json({
+              message: "Your account Verified.",
+              status: 200,
+              data: userDetails,
+            });
+          }
         } else {
           return res.json(globalService.linkExpiryError());
         }
@@ -387,7 +412,6 @@ exports.updatePassword = async (req, res) => {
     return res.json(globalService.linkExpiryError());
   }
 };
-
 
 exports.activate = async (req, res) => {
   const postData = req.body;

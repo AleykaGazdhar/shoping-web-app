@@ -42,7 +42,7 @@ var Users = new Schema({
     required: true
   },
   shoppingPreference: Any,
-  forgotLink: String,
+  forgotToken: String,
   forgotStatus: Any,
 }, {
   timestamps: true,

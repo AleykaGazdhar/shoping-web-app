@@ -79,9 +79,9 @@ export class RecoveryPasswordComponent implements OnInit {
     this.spinner.show();
     const postData = {
       _id: this.userId,
-      forgotLink: this.link,
+      forgotToken: this.link,
     };
-    this.usersService.updatePassword(postData).subscribe(
+    this.usersService.verifyAndChangePassword(postData).subscribe(
       {
         next: (data: any) => {
           console.log("data======", data);
@@ -122,7 +122,7 @@ export class RecoveryPasswordComponent implements OnInit {
     const resetPostData = {
       _id: this.userInfo._id,
       password: resetPasswordData.newPass,
-      forgotLink: '',
+      forgotToken: '',
       forgotStatus: 0,
     };
 
