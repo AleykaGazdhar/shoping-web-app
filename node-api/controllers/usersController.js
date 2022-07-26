@@ -6,6 +6,7 @@ require("dotenv").config();
 
 exports.saveUserDetails = async (req, res) => {
   const postData = req.body;
+  console.log("postData=====", postData);
   if (postData.password) {
     postData.password = globalService.encryptString(postData.password);
   }
@@ -385,10 +386,34 @@ exports.verifyAndChangePassword = async (req, res) => {
                     data: err,
                   });
                 } else {
-                  return res.json({
-                    status: 200,
-                    message: "Your password has been changed successfully. Please login to continue"
-                  });
+                  const linkParam =
+                    process.env.WEBSITE_URL +
+                    "home/";
+                  var prepareEmailConfig = {
+                    email: userDetails.email,
+                    fullName: globalService.capitalize(userDetails.fullName),
+                    markerData: {
+                      name: globalService.capitalize(userDetails.fullName),
+                      websiteUrl: process.env.WEBSITE_URL,
+                      activateLink: linkParam,
+                      newPassword: bodyParm.password,
+                      name: globalService.capitalize(userDetails.fullName),
+                    },
+                    templatePath: "public/assets/emailtemplates/password-changed.html",
+                    subject: "Your passowrd has been changed to Shoppng Mart account",
+                    html: "",
+                    templateName: "welcome-activation", // NEW
+                  };
+                  globalService.prepareEmailData(
+                    prepareEmailConfig,
+                    (err, resp) => {
+                      return res.json({
+                        status: 200,
+                        message: "Your password has been changed successfully. Please login to continue"
+                      });
+                    }
+                  );
+
                 }
               }
             );
@@ -425,7 +450,7 @@ exports.activate = async (req, res) => {
         if (err) {
           return res.json({
             status: 500,
-            message: "There are some error while update.",
+            message: "There are some error while activate account.",
             data: err,
           });
         } else {

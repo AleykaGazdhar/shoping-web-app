@@ -36,7 +36,7 @@ const swaggerUi = require('swagger-ui-express');
 // const swaggerJsDoc = require('swagger-jsdoc');
 // const swaggerJsDoc = require('./swagger.json');
 const swaggerJsDoc = require('./swagger-3.json');
-app.use('/swaggerApiDoc', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc))
+app.use('/swagger-node-api', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc))
 
 
 

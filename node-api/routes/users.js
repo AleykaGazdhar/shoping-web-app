@@ -7,6 +7,7 @@ router.post('/activate', Users.activate);
 router.post('/authentication', Users.authentication);
 router.post("/addPreference", Users.saveUserDetails);
 router.get('/logout', Users.logout);
+router.get('/getUsersList', Users.getUsersList);
 router.post('/forgotPassword', Users.forgotPassword);
 router.post('/verifyAndChangePassword', Users.verifyAndChangePassword);
 module.exports = router;

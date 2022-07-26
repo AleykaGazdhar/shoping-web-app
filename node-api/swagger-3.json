@@ -93,7 +93,8 @@
                     "default": "62de5c60ba2338586a2ba326"
                   },
                   "status": {
-                    "type": "number"
+                    "type": "number",
+                    "default": "1"
                   }
                 }
               }
@@ -196,6 +197,9 @@
         "tags": [
           "Users"
         ],
+        "security": [{
+          "Bearer": []
+        }],
         "summary": "Get user list from the Api system after login.",
         "description": "Get user list from the Api system after login but firstly pass authorize token for it  click to authorize button in top.",
         "responses": {
