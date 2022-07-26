@@ -38,9 +38,6 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('./swagger-3.json');
 app.use('/swagger-node-api', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc))
 
-
-
-
 // session setup
 app.use(session({
   secret: process.env.SESSION_SECRETKEY,
