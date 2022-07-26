@@ -374,6 +374,9 @@ exports.verifyAndChangePassword = async (req, res) => {
           bodyParm.forgotStatus = 0;
           bodyParm.forgotToken = '';
           if (bodyParm.password) {
+            if (bodyParm.password) {
+              bodyParm.password = globalService.encryptString(bodyParm.password);
+            }
             User.updateOne({
                 _id: bodyParm._id,
               },
